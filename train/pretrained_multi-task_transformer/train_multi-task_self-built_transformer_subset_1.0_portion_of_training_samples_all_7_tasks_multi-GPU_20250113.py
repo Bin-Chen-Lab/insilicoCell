@@ -1,11 +1,12 @@
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
-from torch.utils.data import DataLoader, Dataset, RandomSampler
+from torch.utils.data import DataLoader, Dataset
 import numpy as np
 import pandas as pd
 import random
 import os
+import time
 
 
 local_rank = int(os.getenv('LOCAL_RANK', 0)) #0,1,2,3,4
@@ -22,7 +23,7 @@ else:
 torch.distributed.init_process_group('nccl', rank = rank, world_size = world_size)
 torch.cuda.set_device(local_rank)
 
-#CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6 nohup torchrun --nproc_per_node=7 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.py' > 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.log' 2>&1 &
+#CUDA_VISIBLE_DEVICES=1,2,3,4 nohup torchrun --nproc_per_node=4 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.py' > 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.log' 2>&1 &
 
 #----------------------------------------------------------------------------------------------------------------
 #set seed:
@@ -410,7 +411,6 @@ class CustomDataset(Dataset):
 
 #---------------------------------------------------------------------------------------
 #import the whole training data for all 7 tasks:
-
 #########################
 #task 1: 'drug-induced_gene_exp'
 #order of modality: drug, cellline, gene, time, dose
@@ -473,32 +473,32 @@ Y_training_gene_CNV = torch.load('/egr/research-aidd/chenruo4/self-built_transfo
 #----------------------------------------------------------------------------------------------------------------
 # Create DataLoader
 train_dataset_drug_induced_gene_exp = CustomDataset(X_training_drug_induced_gene_exp, Y_training_drug_induced_gene_exp, 
-                                                   task_id = 'drug-induced_gene_exp'
-                                                   )
+                                                task_id = 'drug-induced_gene_exp'
+                                                )
 
 train_dataset_drug_protein_binding = CustomDataset(X_training_drug_protein_binding, Y_training_drug_protein_binding, 
-                                                   task_id = 'drug-protein_binding'
-                                                   )
+                                                task_id = 'drug-protein_binding'
+                                                )
 
 train_dataset_TF_gene_regulation = CustomDataset(X_training_TF_gene_regulation, Y_training_TF_gene_regulation, 
-                                                   task_id = 'TF-gene_regulation'
-                                                   )
+                                                task_id = 'TF-gene_regulation'
+                                                )
 
 train_dataset_drug_sensitivity = CustomDataset(X_training_drug_sensitivity, Y_training_drug_sensitivity, 
-                                               task_id = 'drug_sensitivity'
-                                               )
+                                            task_id = 'drug_sensitivity'
+                                            )
 
 train_dataset_gene_effect_score = CustomDataset(X_training_gene_effect_score, Y_training_gene_effect_score, 
-                                               task_id = 'gene_effect_score'
-                                               )
+                                            task_id = 'gene_effect_score'
+                                            )
 
 train_dataset_gene_mutation = CustomDataset(X_training_gene_mutation, Y_training_gene_mutation, 
-                                               task_id = 'gene_mutation'
-                                               )
+                                            task_id = 'gene_mutation'
+                                            )
 
 train_dataset_gene_CNV = CustomDataset(X_training_gene_CNV, Y_training_gene_CNV, 
-                                               task_id = 'gene_CNV'
-                                               )
+                                            task_id = 'gene_CNV'
+                                            )
 
 #---------------------------------------------------------------------------------------
 #changeable parameters:
@@ -548,6 +548,10 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=0.00001)
 loss_regression = nn.MSELoss()
 loss_classification = nn.BCELoss() 
 
+#Record training time:
+torch.cuda.synchronize() # wait for warm-up to finish
+times = []
+
 # Training loop
 for e in range(epoch):
     epoch_loss_1 = []
@@ -569,6 +573,8 @@ for e in range(epoch):
     sampler_5.set_epoch(e)
     sampler_6.set_epoch(e)
     sampler_7.set_epoch(e)
+    #
+    start_epoch = time.time()
     #
     for batch_1, batch_2, batch_3, batch_4, batch_5, batch_6, batch_7 in zip(train_loader_1, train_loader_2, train_loader_3, train_loader_4, train_loader_5, train_loader_6, train_loader_7):
         #
@@ -621,7 +627,7 @@ for e in range(epoch):
         loss_6 = loss_classification(outputs_6.view(-1), labels_6.cuda(local_rank).view(-1))
         loss_7 = loss_regression(outputs_7.view(-1), labels_7.cuda(local_rank).view(-1))
         #weight the loss to around 1:
-        loss = (loss_1 * (1/3)) + (loss_2 * (1/7)) + (loss_3 * 2) + (loss_4 * (1/7)) + (loss_5 * 5) + (loss_6 * 2) + (loss_7)
+        loss = (loss_1 * (1/2)) + (loss_2 * (1/9)) + (loss_3) + (loss_4 * (1/7)) + (loss_5 * 4) + (loss_6) + (loss_7)
         #print(f"loss_1: {loss_1}, loss_2: {loss_2}, loss_3: {loss_3}, loss_4: {loss_4}, loss_5: {loss_5}, loss_6: {loss_6}, loss_7: {loss_7}")
         #print(f"total_loss: {loss}")
         loss.backward(retain_graph=True)
@@ -638,11 +644,18 @@ for e in range(epoch):
         epoch_loss_6.append(loss_6.to('cpu').detach().flatten().numpy()[0])
         epoch_loss_7.append(loss_7.to('cpu').detach().flatten().numpy()[0])
         epoch_loss_all.append(loss.to('cpu').detach().flatten().numpy()[0])
+    #
+    torch.cuda.synchronize()
+    end_epoch = time.time()
+    elapsed = end_epoch - start_epoch
+    times.append(elapsed)
+    #
     # Save the model:
-    torch.save(model.state_dict(), out_dir + 'self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_' + str(e) + '_20241230')
+    torch.save(model.state_dict(), out_dir + 'self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_' + str(e) + '_20250113')
     # Save training loss:
     df = pd.DataFrame({'epoch_loss_1': epoch_loss_1, 'epoch_loss_2': epoch_loss_2, 'epoch_loss_3': epoch_loss_3, 'epoch_loss_4': epoch_loss_4, 'epoch_loss_5': epoch_loss_5, 'epoch_loss_6': epoch_loss_6, 'epoch_loss_7': epoch_loss_7, 'epoch_total_loss': epoch_loss_all}, index = range(0, len(epoch_loss_all)))
-    df.to_csv(out_dir + 'training_loss_self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_' + str(e) + '_20241230.csv')
+    df.to_csv(out_dir + 'training_loss_self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_' + str(e) + '_20250113.csv')
 
-    
-        
+#Save training time:
+pd.DataFrame(times).to_csv(out_dir + 'self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_training_time_per_epoch_20250113.csv')
+      
