@@ -23,7 +23,7 @@ else:
 torch.distributed.init_process_group('nccl', rank = rank, world_size = world_size)
 torch.cuda.set_device(local_rank)
 
-#CUDA_VISIBLE_DEVICES=1,2,3,4 nohup torchrun --nproc_per_node=4 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.py' > 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.log' 2>&1 &
+#CUDA_VISIBLE_DEVICES=0,1,2,3,4,5 nohup torchrun --nproc_per_node=6 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.py' > 'train_multi-task_self-built_transformer_subset_1.0_portion_of_training_samples_all_7_tasks_multi-GPU_20250113.log' 2>&1 &
 
 #----------------------------------------------------------------------------------------------------------------
 #set seed:
@@ -394,8 +394,8 @@ class ModelPooler(nn.Module):
 # Custom dataset class
 class CustomDataset(Dataset):
     def __init__(self, input_X, input_Y, task_id):
-        self.input_X = input_X.float()  
-        self.input_Y = input_Y.float()  
+        self.input_X = input_X 
+        self.input_Y = input_Y
         self.task_id = task_id
     def __len__(self):
         return len(self.input_Y)
@@ -404,9 +404,9 @@ class CustomDataset(Dataset):
         label = self.input_Y[idx]  
         task_id = self.task_id
         return {
-            'input_data': input_data,  
-            'labels': label,
-            'task_id': task_id 
+                'input_data': torch.tensor(input_data, dtype=torch.float32).cuda(local_rank),  
+                'labels': torch.tensor(label, dtype=torch.float32).cuda(local_rank),
+                'task_id': task_id
         }
 
 #---------------------------------------------------------------------------------------
@@ -414,61 +414,61 @@ class CustomDataset(Dataset):
 #########################
 #task 1: 'drug-induced_gene_exp'
 #order of modality: drug, cellline, gene, time, dose
-X_training_drug_induced_gene_exp = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_drug-induced_gene_exp_use_GNN.pt')
+X_training_drug_induced_gene_exp = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_drug-induced_gene_exp_use_GNN.npy', mmap_mode='r')
 #torch.Size([22456548, 858])
-Y_training_drug_induced_gene_exp = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_drug-induced_gene_exp_use_GNN.pt')
+Y_training_drug_induced_gene_exp = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_drug-induced_gene_exp_use_GNN.npy', mmap_mode='r')
 
 
 #########################
 #task 2: 'drug-protein_binding'
 #order of modality: drug, protein
-X_training_drug_protein_binding = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_drug-protein_binding_use_GNN.pt')
+X_training_drug_protein_binding = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_drug-protein_binding_use_GNN.npy', mmap_mode='r')
 #torch.Size([1265596, 1624])
-Y_training_drug_protein_binding = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_drug-protein_binding_use_GNN.pt')
+Y_training_drug_protein_binding = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_drug-protein_binding_use_GNN.npy', mmap_mode='r')
 
 
 #########################
 #task 3: 'TF-gene_regulation' 
 #order of modality: gene, protein
 #X_training_TF_gene_regulation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_TF-gene_regulation.pt')
-X_training_TF_gene_regulation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_TF-gene_regulation_balanced_data.pt')
+X_training_TF_gene_regulation = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_TF-gene_regulation_balanced_data.npy', mmap_mode='r')
 #torch.Size([576576, 1152])
 #Y_training_TF_gene_regulation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_TF-gene_regulation.pt')
-Y_training_TF_gene_regulation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_TF-gene_regulation_balanced_data.pt')
+Y_training_TF_gene_regulation = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_TF-gene_regulation_balanced_data.npy', mmap_mode='r')
 
 
 #########################
 #task 4: 'drug_sensitivity'
 #order of modality: drug, cellline
-X_training_drug_sensitivity = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_drug_sensitivity_use_GNN.pt')
+X_training_drug_sensitivity = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_drug_sensitivity_use_GNN.npy', mmap_mode='r')
 #torch.Size([276712, 728])
-Y_training_drug_sensitivity = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_drug_sensitivity_use_GNN.pt')
+Y_training_drug_sensitivity = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_drug_sensitivity_use_GNN.npy', mmap_mode='r')
 
 
 #########################
 #task 5: 'gene_effect_score'
 #order of modality: cellline, gene
-X_training_gene_effect_score = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_gene_effect_score.pt')
+X_training_gene_effect_score = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_gene_effect_score.npy', mmap_mode='r')
 #torch.Size([8809512, 256])
-Y_training_gene_effect_score = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_gene_effect_score.pt')
+Y_training_gene_effect_score = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_gene_effect_score.npy', mmap_mode='r')
 
 
 #########################
 #task 6: 'gene_mutation'
 #order of modality: cellline, gene
 #X_training_gene_mutation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_gene_mutation.pt')
-X_training_gene_mutation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_gene_mutation_balanced_data.pt')
+X_training_gene_mutation = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_gene_mutation_balanced_data.npy', mmap_mode='r')
 #torch.Size([866798, 256])
 #Y_training_gene_mutation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_gene_mutation.pt')
-Y_training_gene_mutation = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_gene_mutation_balanced_data.pt')
+Y_training_gene_mutation = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_gene_mutation_balanced_data.npy', mmap_mode='r')
 
 
 #########################
 #task 7: 'gene_CNV'
 #order of modality: cellline, gene
-X_training_gene_CNV = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_gene_CNV.pt')
+X_training_gene_CNV = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/X_training_set_task_gene_CNV.npy', mmap_mode='r')
 #torch.Size([17809611, 256])
-Y_training_gene_CNV = torch.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_gene_CNV.pt')
+Y_training_gene_CNV = np.load('/egr/research-aidd/chenruo4/self-built_transformer/input_representations/concat_input_per_task/Y_training_set_task_gene_CNV.npy', mmap_mode='r')
 
 #----------------------------------------------------------------------------------------------------------------
 # Create DataLoader
@@ -627,7 +627,7 @@ for e in range(epoch):
         loss_6 = loss_classification(outputs_6.view(-1), labels_6.cuda(local_rank).view(-1))
         loss_7 = loss_regression(outputs_7.view(-1), labels_7.cuda(local_rank).view(-1))
         #weight the loss to around 1:
-        loss = (loss_1 * (1/2)) + (loss_2 * (1/9)) + (loss_3) + (loss_4 * (1/7)) + (loss_5 * 4) + (loss_6) + (loss_7)
+        loss = (loss_1 * (1/2)) + (loss_2 * (1/8)) + (loss_3) + (loss_4 * (1/7)) + (loss_5 * 4) + (loss_6) + (loss_7)
         #print(f"loss_1: {loss_1}, loss_2: {loss_2}, loss_3: {loss_3}, loss_4: {loss_4}, loss_5: {loss_5}, loss_6: {loss_6}, loss_7: {loss_7}")
         #print(f"total_loss: {loss}")
         loss.backward(retain_graph=True)
@@ -651,11 +651,11 @@ for e in range(epoch):
     times.append(elapsed)
     #
     # Save the model:
-    torch.save(model.state_dict(), out_dir + 'self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_' + str(e) + '_20250113')
+    torch.save(model.state_dict(), out_dir + 'self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_rank_' + str(local_rank) + '_epoch_' + str(e) + '_20250113')
     # Save training loss:
     df = pd.DataFrame({'epoch_loss_1': epoch_loss_1, 'epoch_loss_2': epoch_loss_2, 'epoch_loss_3': epoch_loss_3, 'epoch_loss_4': epoch_loss_4, 'epoch_loss_5': epoch_loss_5, 'epoch_loss_6': epoch_loss_6, 'epoch_loss_7': epoch_loss_7, 'epoch_total_loss': epoch_loss_all}, index = range(0, len(epoch_loss_all)))
-    df.to_csv(out_dir + 'training_loss_self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_' + str(e) + '_20250113.csv')
+    df.to_csv(out_dir + 'training_loss_self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_rank_' + str(local_rank) + '_epoch_' + str(e) + '_20250113.csv')
 
 #Save training time:
-pd.DataFrame(times).to_csv(out_dir + 'self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_training_time_per_epoch_20250113.csv')
-      
+pd.DataFrame(times).to_csv(out_dir + 'self-built_transformer_multitask_no_modality_tokens_use_GNN_drugs_lr0.00001_all_7_tasks_1.0_portion_balanced_labels_multiGPU_rank_' + str(local_rank) + '_training_time_per_epoch_20250113.csv')
+     
