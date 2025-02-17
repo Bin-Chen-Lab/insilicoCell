@@ -753,7 +753,7 @@ for e in range(epoch):
     all_val_set_performance = pd.DataFrame({'AUROC': AUROC, 'AUPRC': AUPRC, 'f1': f1, 'accuracy': acc}, index = range(0, 1))
     all_val_set_performance.to_csv(out_dir + 'self-built_transformer_multi-task_gene_mutation_lr0.00001_GELU_subset_0.1_portion_BatchNum_5000_equal_weighted_loss_epoch_' + str(e) + '_internal_seen_unseen_mixture_val_set_performance_20250210.csv')
     all_val_set_loss = pd.DataFrame({'val_loss': val_loss_e_6}, index = range(0, 1))
-    all_val_set_loss.to_csv(out_dir + 'self-built_transformer_multi-task_TF_gene_mutation_lr0.00001_GELU_subset_0.1_portion_BatchNum_5000_equal_weighted_loss_epoch_' + str(e) + '_internal_seen_unseen_mixture_val_set_loss_20250210.csv')
+    all_val_set_loss.to_csv(out_dir + 'self-built_transformer_multi-task_gene_mutation_lr0.00001_GELU_subset_0.1_portion_BatchNum_5000_equal_weighted_loss_epoch_' + str(e) + '_internal_seen_unseen_mixture_val_set_loss_20250210.csv')
     #
     #task 7: 'gene_CNV':
     val_loss_e_7 = loss_regression(torch.tensor(val_outputs_7).view(-1), Y_val_gene_CNV[:len(val_outputs_7)].view(-1))
