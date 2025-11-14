@@ -18,7 +18,14 @@ File 2: log2TPM data of transcriptomic profiles in cells. Row names are cell nam
 
 # Step 3: Run InsilicoCell for prediction
 Predicting drug-induced gene expression change: <br />
-python demo_drug-induced_gene_expression.py --File1 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info.csv --File2 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/cell_transcriptomes_log2TPM.csv --out pred_demo --device GPU
+Under the "./InsilicoCell" directory, run the following shell command for prediction: <br />
+```
+python demo_drug-induced_gene_expression.py --File1 ./demo_data/input_sample_info.csv --File2 ./demo_data/cell_transcriptomes_log2TPM.csv --out pred_demo --device GPU
+```
+File1: The path to your File 1 as in Step 2. <br />
+File2: The path to your File 2 as in Step 2. <br />
+out: Set a file name for the output prediction file (no extension). <br />
+device: GPU or CPU. <br />
 
 
 
