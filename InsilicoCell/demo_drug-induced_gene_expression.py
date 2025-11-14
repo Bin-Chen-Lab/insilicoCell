@@ -33,6 +33,18 @@ else:
 #File 2: log2TPM data of transcriptomic profiles in cells. Row names are cell names, column names must use the same gene names in orders as shown in the demo data. For missing genes' expression, you may use the average expression of the other genes in the cell to impute.
 File_1 = pd.read_csv(File_1_path, index_col = 'Unnamed: 0')
 File_2 = pd.read_csv(File_2_path, index_col = 'Unnamed: 0')
+
+#------------------------------------------------------------------------------------
+#Double-check of column names:
+val_file = pd.read_csv('./demo_data/cell_transcriptomes_log2TPM.csv', index_col = 'Unnamed: 0')
+if File_2.shape[1] != 19144:
+    print("Column names (genes) or orders in your File2 does not fully match with our demo file, please check the gene names and orders in our demo file at https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/cell_transcriptomes_log2TPM.csv")
+    sys.exit()
+
+if not (val_file.columns == File_2.columns).all():
+    print("Column names (genes) or orders in your File2 does not fully match with our demo file, please check the gene names and orders in our demo file at https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/cell_transcriptomes_log2TPM.csv")
+    sys.exit()
+
 #------------------------------------------------------------------------------------
 #Load gene embedding file:
 gene_embeddings = pd.read_csv('./model_checkpoint/GO_terms_all_19614_human_genes_pecanpy_embeddings_20241212.csv', index_col = '0')
