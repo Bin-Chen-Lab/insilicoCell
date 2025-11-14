@@ -47,7 +47,7 @@ if not (val_file.columns == File_2.columns).all():
 
 #------------------------------------------------------------------------------------
 #Load gene embedding file:
-gene_embeddings = pd.read_csv('./model_checkpoint/GO_terms_all_19614_human_genes_pecanpy_embeddings_20241212.csv', index_col = '0')
+gene_embeddings = pd.read_csv('./model_checkpoint/gene_embedding.csv', index_col = '0')
 
 #------------------------------------------------------------------------------------
 #Generate drug embeddings:
