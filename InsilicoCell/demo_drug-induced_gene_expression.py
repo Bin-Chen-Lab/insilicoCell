@@ -5,6 +5,8 @@ from rdkit import Chem
 from rdkit.Chem import AllChem
 import argparse
 import sys
+from rdkit import RDLogger
+RDLogger.DisableLog('rdApp.*')
 
 parser = argparse.ArgumentParser(description="Drug-induced gene expression prediction")
 parser.add_argument("--File1", required=True, help="Path to input sample info CSV file.")
@@ -53,6 +55,7 @@ gene_embeddings = pd.read_csv('./model_checkpoint/gene_embedding.csv', index_col
 #Generate drug embeddings:
 all_smiles = File_1['SMILES'].unique().tolist()
 fingerprints = []
+invalid_smiles = []
 
 for smi in all_smiles:
     mol = Chem.MolFromSmiles(smi)
@@ -61,8 +64,15 @@ for smi in all_smiles:
         arr = np.zeros((1,), dtype=int)
         AllChem.DataStructs.ConvertToNumpyArray(fp, arr)
         fingerprints.append(arr)
+    else:
+        invalid_smiles.append(smi)
 
 fingerprint_matrix = np.array(fingerprints)
+
+if fingerprint_matrix.shape[0] != len(all_smiles):
+    print("Your File1 contains invalid SMILES strings, please remove them from your File1 before proceeding:", invalid_smiles)
+    sys.exit()
+
 drug_embeddings = pd.DataFrame(fingerprint_matrix, index = all_smiles)
 
 #------------------------------------------------------------------------------------
