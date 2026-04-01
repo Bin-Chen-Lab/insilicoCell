@@ -118,6 +118,3 @@ y = predict_in_batches(model3, int(float(batch_size)), device=device) #predicted
 File_1['prediction'] = np.exp(y.numpy()) - 1 #covert back to the original AUC scale
 
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
-
-#-----------------------------------------------------------------------------------------
-#python demo_drug_sensitivity.py --File1 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info_drug_response.csv --File2 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/task_drug_response_cell_transcriptomes_log2TPM.csv --out pred_demo_drug_response --BatchSize 16 --device GPU
