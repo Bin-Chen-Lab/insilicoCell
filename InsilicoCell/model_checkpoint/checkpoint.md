@@ -1,10 +1,10 @@
 Download the checkpoints before you use InsilicoCell, and put them in the "InsilicoCell/checkpoint" folder: <br />
 
-Embedding files:
+Embedding files: <br />
 [cell_embedding.pt](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/cell_embedding.pt) <br />
 [gene_embedding.csv](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_embedding.csv) <br />
 
-pretrained model (GPU version):
+pretrained model (GPU version): <br />
 [drug-induced_gene_expression_GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-induced_gene_expression_GPU.pt) <br />
 [drug-protein_binding_affinity_GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-protein_binding_GPU.pt) <br />
 [TF-gene_association_GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/TF_gene_regulation_GPU.pt) <br />
@@ -13,7 +13,7 @@ pretrained model (GPU version):
 [gene_mutation_status_GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_mutation_GPU.pt) <br />
 [CNV_GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_CNV_GPU.pt) <br />
 
-pretrained model (CPU version):
+pretrained model (CPU version): <br />
 [drug-induced_gene_expression_CPU)](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-induced_gene_expression_CPU.pt) <br />
 [drug-protein_binding_affinity_CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-protein_binding_CPU.pt) <br />
 [TF-gene_association_CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/TF_gene_regulation_CPU.pt) <br />
