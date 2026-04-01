@@ -104,5 +104,3 @@ File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
 File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
 
-#-----------------------------------------------------------------------------------------
-#python demo_gene_mutation.py --File1 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info_gene_mutation.csv --File2 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/task_gene_mutation_cell_transcriptomes_log2TPM.csv --out pred_demo_gene_mutation --BatchSize 16 --device GPU
