@@ -132,6 +132,3 @@ File_1["prediction"] = y.numpy()
 #y = model3.to(device)(tmp_input_all.to(device))[0]
 #File_1['prediction'] = y.to('cpu').detach().numpy()
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
-
-#-----------------------------------------------------------------------------------------
-#python demo_drug-induced_gene_expression.py --File1 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info.csv --File2 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/cell_transcriptomes_log2TPM.csv --out pred_demo --BatchSize 16 --device GPU
