@@ -9,7 +9,7 @@ dependencies:
     - pandas==1.4.2
     - numpy==1.26.4
     - torch==2.5.1
-    - rdkit==2024.3
+    - rdkit==2024.3.5
     - transformers==4.45.2
     - sentencepiece==0.2.0
     
