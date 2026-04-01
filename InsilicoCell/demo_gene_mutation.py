@@ -8,7 +8,7 @@ import sys
 from rdkit import RDLogger
 RDLogger.DisableLog('rdApp.*')
 
-parser = argparse.ArgumentParser(description="Drug-induced gene expression prediction")
+parser = argparse.ArgumentParser(description="Drug response prediction")
 parser.add_argument("--File1", required=True, help="Path to input sample info CSV file.")
 parser.add_argument("--File2", required=True, help="Path to cell transcriptome log2TPM CSV file.")
 parser.add_argument("--out", required=True, help="Output prediction file name (no extension).")
@@ -35,7 +35,7 @@ else:
 #Users need to input: 
 #File 1: Input sample info file (the column "cell_iname" should match the cell names in the row names of file 2). 
 #File 2: log2TPM data of transcriptomic profiles in cells. Row names are cell names, column names must use the same gene names in orders as shown in the demo data. For missing genes' expression, you may use the average expression of the other genes in the cell to impute.
-File_1 = pd.read_csv(File_1_path, index_col = 'Unnamed: 0')
+File_1 = pd.read_csv(File_1_path)
 File_2 = pd.read_csv(File_2_path, index_col = 'Unnamed: 0')
 
 #------------------------------------------------------------------------------------
@@ -64,30 +64,6 @@ if len(nonexist_genes) != 0:
     sys.exit()
 
 #------------------------------------------------------------------------------------
-#Generate drug embeddings:
-all_smiles = File_1['SMILES'].unique().tolist()
-fingerprints = []
-invalid_smiles = []
-
-for smi in all_smiles:
-    mol = Chem.MolFromSmiles(smi)
-    if mol:
-        fp = AllChem.GetMorganFingerprintAsBitVect(mol, radius=2, nBits=1024)
-        arr = np.zeros((1,), dtype=int)
-        AllChem.DataStructs.ConvertToNumpyArray(fp, arr)
-        fingerprints.append(arr)
-    else:
-        invalid_smiles.append(smi)
-
-fingerprint_matrix = np.array(fingerprints)
-
-if fingerprint_matrix.shape[0] != len(all_smiles):
-    print("Your File1 contains invalid SMILES strings, please remove them from your File1 before proceeding:", invalid_smiles)
-    sys.exit()
-
-drug_embeddings = pd.DataFrame(fingerprint_matrix, index = all_smiles)
-
-#------------------------------------------------------------------------------------
 #Generate cell line embeddings:
 model2 = torch.jit.load("./model_checkpoint/cell_embedding.pt", map_location=device)
 model2.eval()
@@ -95,6 +71,7 @@ cellline_embeddings = model2(torch.tensor(File_2.values, dtype=torch.float32).to
 cellline_embeddings = pd.DataFrame(cellline_embeddings.detach().numpy(), index = File_2.index)
 
 #------------------------------------------------------------------------------------
+
 #convert embeddings to torch tensor format:
 
 def predict_in_batches(model, batch_size, device="cpu"):
@@ -106,32 +83,26 @@ def predict_in_batches(model, batch_size, device="cpu"):
     with torch.no_grad():
         for start in range(0, len(File_1), batch_size):
             end = start + batch_size
-            tmp_drug = drug_embeddings.loc[File_1.iloc[start:end, :]['SMILES'], :] 
-            tmp_drug = torch.tensor(tmp_drug.values, dtype=torch.float32) 
+            tmp_gene = gene_embeddings.loc[File_1.iloc[start:end, :]['gene_name'], :] 
+            tmp_gene = torch.tensor(tmp_gene.values, dtype=torch.float32) 
             tmp_cellline = cellline_embeddings.loc[File_1.iloc[start:end, :]['cell_iname'], :] 
             tmp_cellline = torch.tensor(tmp_cellline.values, dtype=torch.float32) 
-            tmp_gene = gene_embeddings.loc[File_1.iloc[start:end, :]['gene_name'], :]
-            tmp_gene = torch.tensor(tmp_gene.values, dtype=torch.float32) 
-            tmp_time = pd.DataFrame(File_1.iloc[start:end, :]['time_h'])
-            tmp_time = torch.tensor(tmp_time.values, dtype=torch.float32) 
-            tmp_dose = pd.DataFrame(File_1.iloc[start:end, :]['dose_uM'])
-            tmp_dose = torch.tensor(tmp_dose.values, dtype=torch.float32)  
-            batch = torch.cat((tmp_drug, tmp_cellline, tmp_gene, tmp_time, tmp_dose), dim = 1).to(device)
+            batch = torch.cat((tmp_cellline, tmp_gene), dim = 1).to(device)
             y_batch = model(batch)[0]    
             outputs.append(y_batch.cpu())
     return torch.cat(outputs, dim=0)
 
 if device == 'cpu':
-    model3 = torch.jit.load("./model_checkpoint/drug-induced_gene_expression_CPU.pt", map_location=device)
+    model3 = torch.jit.load("./model_checkpoint/gene_mutation_CPU.pt", map_location=device)
 else:
-    model3 = torch.jit.load("./model_checkpoint/drug-induced_gene_expression_GPU.pt", map_location=device)
+    model3 = torch.jit.load("./model_checkpoint/gene_mutation_GPU.pt", map_location=device)
 
 model3.eval()
-y = predict_in_batches(model3, int(float(batch_size)), device=device) 
+y = predict_in_batches(model3, int(float(batch_size)), device=device)
 File_1["prediction"] = y.numpy()
-#y = model3.to(device)(tmp_input_all.to(device))[0]
-#File_1['prediction'] = y.to('cpu').detach().numpy()
+File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
+File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
 
 #-----------------------------------------------------------------------------------------
-#python demo_drug-induced_gene_expression.py --File1 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info.csv --File2 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/cell_transcriptomes_log2TPM.csv --out pred_demo --BatchSize 16 --device GPU
+#python demo_gene_mutation.py --File1 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info_gene_mutation.csv --File2 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/task_gene_mutation_cell_transcriptomes_log2TPM.csv --out pred_demo_gene_mutation --BatchSize 16 --device GPU
