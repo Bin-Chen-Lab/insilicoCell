@@ -110,6 +110,4 @@ File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
 
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
 
-#-----------------------------------------------------------------------------------------
-#python 'demo_TF-gene_association.py' --File1 '/egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info_TF-gene_association.csv' --out 'pred_demo_TF-gene_association' --BatchSize 16 --device GPU
 
