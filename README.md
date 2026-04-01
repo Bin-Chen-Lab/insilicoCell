@@ -38,11 +38,11 @@ Predicting drug-induced gene expression change: <br />
 ```
 python 'demo_drug-induced_gene_expression.py' --File1 './demo_data/input_sample_info.csv' --File2 './demo_data/cell_transcriptomes_log2TPM.csv' --out 'pred_demo_drug-induced_gene_exp_change' --BatchSize 512 --device GPU
 ```
-Predicting drug-protein binding affinity: <br />
+Predicting drug-protein binding affinity (this task may take a little longer if it's the first time for you to use T5 model): <br />
 ```
 python 'demo_drug-protein_binding_affinity.py' --File1 './demo_data/input_sample_info_drug-protein_binding.csv' --out 'pred_demo_drug-protein_binding' --BatchSize 512 --device GPU
 ```
-Predicting TF-gene association: <br />
+Predicting TF-gene association (this task may take a little longer if it's the first time for you to use T5 model): <br />
 ```
 python 'demo_TF-gene_association.py' --File1 './demo_data/input_sample_info_TF-gene_association.csv' --out 'pred_demo_TF-gene_association' --BatchSize 512 --device GPU
 ```
