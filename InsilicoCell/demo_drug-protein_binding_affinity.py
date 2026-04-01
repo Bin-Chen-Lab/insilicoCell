@@ -122,8 +122,3 @@ model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device) #predicted values are log10(IC50) (IC50 is in the unit of nM) 
 File_1["prediction"] = y.numpy()
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
-
-#-----------------------------------------------------------------------------------------
-#python 'demo_drug-protein_binding_affinity.py' --File1 '/egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info_drug-protein_binding.csv' --out 'pred_demo_drug-protein_binding' --BatchSize 16 --device GPU
-
-#python 'demo_drug-protein_binding_affinity.py' --File1 '/Users/chenruo4/Desktop/drug-induced gene expression/self-built_transformer/upload_no_source_version/demo_data/input_sample_info_drug-protein_binding.csv' --out 'pred_demo_drug-protein_binding' --device CPU
