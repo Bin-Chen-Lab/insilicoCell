@@ -102,6 +102,3 @@ model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device)
 File_1["prediction"] = y.numpy()
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
-
-#-----------------------------------------------------------------------------------------
-#python demo_CNV.py --File1 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/input_sample_info_CNV.csv --File2 /egr/research-aidd/chenruo4/self-built_transformer/upload_no_source_version/demo_data/task_CNV_cell_transcriptomes_log2TPM.csv --out pred_demo_CNV --BatchSize 16 --device GPU
