@@ -14,7 +14,7 @@ pretrained model (GPU version): <br />
 [CNV_GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_CNV_GPU.pt) <br />
 
 pretrained model (CPU version): <br />
-[drug-induced_gene_expression_CPU)](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-induced_gene_expression_CPU.pt) <br />
+[drug-induced_gene_expression_CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-induced_gene_expression_CPU.pt) <br />
 [drug-protein_binding_affinity_CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-protein_binding_CPU.pt) <br />
 [TF-gene_association_CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/TF_gene_regulation_CPU.pt) <br />
 [drug_response_CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug_sensitivity_CPU.pt) <br />
