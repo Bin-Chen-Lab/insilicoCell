@@ -76,7 +76,7 @@ Predicting CNV: <br />
 python 'demo_CNV.py' --File1 './demo_data/input_sample_info_CNV.csv' --File2 './demo_data/task_CNV_cell_transcriptomes_log2TPM.csv' --out 'pred_demo_CNV' --BatchSize 512 --device GPU
 ```
 
-For each task, InsilicoCell will returns the predicted values in the "prediction" column in your output prediction file. <br /> 
+For each task, InsilicoCell will returns the predicted values in the "prediction" column in your output prediction file, which is saved to the "./prediction" directory. <br /> 
 Clarification on the predicted values: <br /> 
 (1) Drug-induced gene expression change: z-scores representing up/down-regulation, ranging from -10 to 10. Larger values represent more up-regulation, vice versa. <br /> 
 (2) Drug-protein binding affinity: log10(IC50) (in the unit of nM). <br /> 
