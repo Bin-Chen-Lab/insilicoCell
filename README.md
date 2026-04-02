@@ -1,6 +1,10 @@
 # InsilicoCell
 
 # Dependencies
+Clone the repo to your device, using the following shell command:
+```
+git clone https://github.com/Bin-Chen-Lab/insilicoCell
+```
 Under the "./InsilicoCell" directory, run the following shell command to create the required conda environment: <br />
 ```
 conda env create -f InsilicoCell_env.yaml
