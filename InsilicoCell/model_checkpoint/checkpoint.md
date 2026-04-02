@@ -1,4 +1,4 @@
-Download the checkpoints before you use InsilicoCell, and put them in the "InsilicoCell/checkpoint" folder: <br />
+Download the checkpoints before you use InsilicoCell, and put them in the "InsilicoCell/model_checkpoint" folder: <br />
 
 Embedding files: <br />
 [cell_embedding.pt](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/cell_embedding.pt) <br />
