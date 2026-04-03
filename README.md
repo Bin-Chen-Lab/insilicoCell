@@ -33,26 +33,9 @@ conda activate InsilicoCell
 
 **Requirements:** Python 3.9, PyTorch 2.5.1, RDKit, Hugging Face Transformers, pandas, numpy.
 
-### 3. Download model checkpoints
+### 3. Download pretrained model 
 
-Download the following files and place them in `InsilicoCell/model_checkpoint/`:
-
-**Embedding files (required for all tasks):**
-
-- [cell_embedding.pt](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/cell_embedding.pt)
-- [gene_embedding.csv](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_embedding.csv)
-
-**Task-specific models — download GPU or CPU versions depending on your hardware:**
-
-| Task | GPU | CPU |
-|------|-----|-----|
-| Drug-induced gene expression | [GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-induced_gene_expression_GPU.pt) | [CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-induced_gene_expression_CPU.pt) |
-| Drug-protein binding affinity | [GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-protein_binding_GPU.pt) | [CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug-protein_binding_CPU.pt) |
-| TF-gene association | [GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/TF_gene_regulation_GPU.pt) | [CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/TF_gene_regulation_CPU.pt) |
-| Drug response | [GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug_sensitivity_GPU.pt) | [CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/drug_sensitivity_CPU.pt) |
-| Gene effect score | [GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_effect_score_GPU.pt) | [CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_effect_score_CPU.pt) |
-| Gene mutation status | [GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_mutation_GPU.pt) | [CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_mutation_CPU.pt) |
-| CNV | [GPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_CNV_GPU.pt) | [CPU](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_CNV_CPU.pt) |
+Download [the following files](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/InsilicoCell_pretrained.gz) and place them under the directory `InsilicoCell/model_checkpoint/`:
 
 ## Preparing Input Data
 
