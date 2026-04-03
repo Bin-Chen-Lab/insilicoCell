@@ -35,7 +35,7 @@ conda activate InsilicoCell
 
 ### 3. Download pretrained model 
 
-Download [the following files](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/InsilicoCell_pretrained.gz) and place them under the directory `InsilicoCell/model_checkpoint/`:
+Download [the following files](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/InsilicoCell_pretrained.zip) and place them under the directory `InsilicoCell/model_checkpoint/`:
 
 ## Preparing Input Data
 
