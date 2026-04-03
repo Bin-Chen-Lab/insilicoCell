@@ -67,7 +67,7 @@ A CSV file of untreated transcriptomic profiles, formatted as log₂(TPM + 1):
 - **Rows:** cell line names (matching the `cell_iname` column in File 1)
 - **Columns:** gene names
 
-This file is used for cell representation. InsilicoCell can handle both seen and unseen cells. If your cell is in the [pretraining dataset](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/cell_line_expression_matrix.csv), you can extract its expression profile directly from there. If your cell is new, you should obtain its transcriptomic profile by yourself.
+This file is used for cell representation. InsilicoCell can handle both seen and unseen cells. If your cell is in the [pretraining dataset](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/cell_line_expression_matrix.csv), you can extract its expression profile directly from there. If your cell is unseen, you should obtain its transcriptomic profile by yourself.
 
 Duplicate gene names are automatically averaged. Missing genes are imputed with the row mean.
 
