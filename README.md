@@ -47,7 +47,7 @@ A CSV file where each row is one prediction sample. Columns vary by task:
 |--------|-------------|---------|
 | `SMILES` | Drug structure in SMILES notation | Drug expression, binding, drug response |
 | `cell_iname` | Cell line name (must match row names in File 2) | Drug expression, drug response, gene effect, mutation, CNV |
-| `gene_name` | Gene name from the [supported gene list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/model_checkpoint/gene_list.csv) (~19,600 genes) | Drug expression, TF-gene, gene effect, mutation, CNV |
+| `gene_name` | Gene name from the [supported gene list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/model_checkpoint/gene_list.csv) (~20,000 genes) | Drug expression, TF-gene, gene effect, mutation, CNV |
 | `target_sequence` | Protein amino acid sequence | Binding, TF-gene |
 | `time_h` | Treatment duration in hours | Drug expression |
 | `dose_uM` | Treatment concentration in μM | Drug expression |
