@@ -1,6 +1,5 @@
 # InsilicoCell
 
-A deep learning framework for predicting cellular responses to drugs and genetic perturbations. InsilicoCell uses pre-trained neural networks to forecast gene expression changes, drug-protein interactions, and genomic features from cell transcriptomes and molecular inputs.
 
 ## Supported Prediction Tasks
 
