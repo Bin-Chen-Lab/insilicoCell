@@ -122,6 +122,7 @@ python demo_TF-gene_association.py \
   --File1 ./demo_data/input_sample_info_TF-gene_association.csv \
   --out pred_TF_gene --BatchSize 512 --device GPU
 ```
+> Note: The first run downloads the T5 protein encoder model (~3 GB) from Hugging Face, which may take extra time.
 
 ### Drug response
 
