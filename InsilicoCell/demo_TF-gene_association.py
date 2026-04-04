@@ -74,7 +74,7 @@ protein_embeddings = pd.DataFrame([t.numpy() for t in embeddings], index = seque
 gene_embeddings = pd.read_csv('./model_checkpoint/gene_embedding.csv', index_col = '0')
 nonexist_genes = list(set(File_1['gene_name']) - set(gene_embeddings.index))
 if len(nonexist_genes) != 0:
-    print("There are invalid gene names in your File1: " + str(nonexist_genes) + ", please use genes from the following gene names: https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_list.csv")
+    print("There are invalid gene names in your File1: " + str(nonexist_genes) + ", please use genes from the following gene names: https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/gene_list.csv")
     sys.exit()
 
 #------------------------------------------------------------------------------------
@@ -97,10 +97,7 @@ def predict_in_batches(model, batch_size, device="cpu"):
             outputs.append(y_batch.cpu())
     return torch.cat(outputs, dim=0)
 
-if device == 'cpu':
-    model3 = torch.jit.load("./model_checkpoint/TF_gene_regulation_CPU.pt", map_location=device)
-else:
-    model3 = torch.jit.load("./model_checkpoint/TF_gene_regulation_GPU.pt", map_location=device)
+model3 = torch.jit.load("./model_checkpoint/TF-gene_association.pt", map_location=device)
 
 model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device) #predicted values are probability
@@ -109,5 +106,4 @@ File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
 File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
 
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
-
 

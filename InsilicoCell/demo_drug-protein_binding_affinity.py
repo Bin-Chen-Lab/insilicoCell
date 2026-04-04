@@ -113,12 +113,10 @@ def predict_in_batches(model, batch_size, device="cpu"):
             outputs.append(y_batch.cpu())
     return torch.cat(outputs, dim=0)
 
-if device == 'cpu':
-    model3 = torch.jit.load("./model_checkpoint/drug-protein_binding_CPU.pt", map_location=device)
-else:
-    model3 = torch.jit.load("./model_checkpoint/drug-protein_binding_GPU.pt", map_location=device)
+model3 = torch.jit.load("./model_checkpoint/drug-protein_binding_affinity.pt", map_location=device)
 
 model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device) #predicted values are log10(IC50) (IC50 is in the unit of nM) 
 File_1["prediction"] = y.numpy()
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
+

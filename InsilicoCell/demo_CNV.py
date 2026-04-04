@@ -45,23 +45,12 @@ File_2 = File_2.groupby(File_2.columns, axis=1).mean() #handle duplicated gene n
 File_2 = File_2.reindex(columns=demo_file.columns)
 File_2 = File_2.apply(lambda row: row.fillna(row.mean()), axis=1)
 
-#val_file = pd.read_csv('./demo_data/cell_transcriptomes_log2TPM.csv', index_col = 'Unnamed: 0')
-
-#if File_2.shape[1] != 19144:
-#    print("Column names (genes) or orders in your File2 does not fully match with our demo file, please check the gene names and orders in our demo file at https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/cell_transcriptomes_log2TPM.csv")
-#    sys.exit()
-
-#if not (val_file.columns == File_2.columns).all():
-#    print("Column names (genes) or orders in your File2 does not fully match with our demo file, please check the gene names and orders in our demo file at https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/cell_transcriptomes_log2TPM.csv")
-#    sys.exit()
-
-
 #------------------------------------------------------------------------------------
 #Load gene embedding file:
 gene_embeddings = pd.read_csv('./model_checkpoint/gene_embedding.csv', index_col = '0')
 nonexist_genes = list(set(File_1['gene_name']) - set(gene_embeddings.index))
 if len(nonexist_genes) != 0:
-    print("There are invalid gene names in your File1: " + str(nonexist_genes) + ", please use genes from the following gene names: https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/model_checkpoint/gene_list.csv")
+    print("There are invalid gene names in your File1: " + str(nonexist_genes) + ", please use genes from the following gene names: https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/gene_list.csv")
     sys.exit()
 
 #------------------------------------------------------------------------------------
@@ -93,12 +82,10 @@ def predict_in_batches(model, batch_size, device="cpu"):
             outputs.append(y_batch.cpu())
     return torch.cat(outputs, dim=0)
 
-if device == 'cpu':
-    model3 = torch.jit.load("./model_checkpoint/gene_CNV_CPU.pt", map_location=device)
-else:
-    model3 = torch.jit.load("./model_checkpoint/gene_CNV_GPU.pt", map_location=device)
+model3 = torch.jit.load("./model_checkpoint/CNV.pt", map_location=device)
 
 model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device)
 File_1["prediction"] = y.numpy()
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
+

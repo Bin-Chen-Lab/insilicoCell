@@ -45,16 +45,6 @@ File_2 = File_2.groupby(File_2.columns, axis=1).mean() #handle duplicated gene n
 File_2 = File_2.reindex(columns=demo_file.columns)
 File_2 = File_2.apply(lambda row: row.fillna(row.mean()), axis=1)
 
-#val_file = pd.read_csv('./demo_data/cell_transcriptomes_log2TPM.csv', index_col = 'Unnamed: 0')
-
-#if File_2.shape[1] != 19144:
-#    print("Column names (genes) or orders in your File2 does not fully match with our demo file, please check the gene names and orders in our demo file at https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/cell_transcriptomes_log2TPM.csv")
-#    sys.exit()
-
-#if not (val_file.columns == File_2.columns).all():
-#    print("Column names (genes) or orders in your File2 does not fully match with our demo file, please check the gene names and orders in our demo file at https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/cell_transcriptomes_log2TPM.csv")
-#    sys.exit()
-
 
 #------------------------------------------------------------------------------------
 #Generate drug embeddings:
@@ -108,13 +98,11 @@ def predict_in_batches(model, batch_size, device="cpu"):
             outputs.append(y_batch.cpu())
     return torch.cat(outputs, dim=0)
 
-if device == 'cpu':
-    model3 = torch.jit.load("./model_checkpoint/drug_sensitivity_CPU.pt", map_location=device)
-else:
-    model3 = torch.jit.load("./model_checkpoint/drug_sensitivity_GPU.pt", map_location=device)
+model3 = torch.jit.load("./model_checkpoint/drug_response.pt", map_location=device)
 
 model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device) #predicted values are ln(AUC+1) 
 File_1['prediction'] = np.exp(y.numpy()) - 1 #covert back to the original AUC scale
 
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
+
