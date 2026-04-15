@@ -78,6 +78,15 @@ All commands are run from the `InsilicoCell/` directory:
 ```bash
 cd InsilicoCell
 ```
+### Parameters
+
+| Parameter | Description |
+|-----------|-------------|
+| `--File1` | Path to sample metadata CSV |
+| `--File2` | Path to cell transcriptome CSV (not needed for binding and TF-gene tasks) |
+| `--out` | Output filename (no extension) — saved to `./prediction/` |
+| `--BatchSize` | Samples per batch. Larger = faster but uses more memory. Does not affect results. |
+| `--device` | `GPU` or `CPU` |
 
 ### Drug-induced gene expression
 
@@ -142,16 +151,6 @@ python demo_CNV.py \
   --File2 ./demo_data/task_CNV_cell_transcriptomes_log2TPM.csv \
   --out pred_CNV --BatchSize 512 --device GPU
 ```
-
-### Parameters
-
-| Parameter | Description |
-|-----------|-------------|
-| `--File1` | Path to sample metadata CSV |
-| `--File2` | Path to cell transcriptome CSV (not needed for binding and TF-gene tasks) |
-| `--out` | Output filename (no extension) — saved to `./prediction/` |
-| `--BatchSize` | Samples per batch. Larger = faster but uses more memory. Does not affect results. |
-| `--device` | `GPU` or `CPU` |
 
 ## Output
 
