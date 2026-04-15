@@ -35,12 +35,14 @@ else:
 #Users need to input: 
 #File 1: Input sample info file (the column "cell_iname" should match the cell names in the row names of file 2). 
 #File 2: log2TPM data of transcriptomic profiles in cells. Row names are cell names, column names must use the same gene names in orders as shown in the demo data. For missing genes' expression, you may use the average expression of the other genes in the cell to impute.
-File_1 = pd.read_csv(File_1_path, index_col = 'Unnamed: 0')
+File_1 = pd.read_csv(File_1_path)
 File_2 = pd.read_csv(File_2_path, index_col = 'Unnamed: 0')
 
 #------------------------------------------------------------------------------------
 #Double-check of column names:
 demo_file = pd.read_csv('./demo_data/cell_transcriptomes_log2TPM.csv', index_col = 'Unnamed: 0')
+#File_2.columns = File_2.columns.str.replace('-', '.', regex=False)
+#demo_file.columns = demo_file.columns.str.replace('-', '.', regex=False)
 File_2 = File_2.groupby(File_2.columns, axis=1).mean() #handle duplicated gene names
 File_2 = File_2.reindex(columns=demo_file.columns)
 File_2 = File_2.apply(lambda row: row.fillna(row.mean()), axis=1)
