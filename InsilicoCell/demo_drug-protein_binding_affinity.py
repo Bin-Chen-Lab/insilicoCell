@@ -19,6 +19,7 @@ parser.add_argument("--out", required=True, help="Output prediction file name (n
 parser.add_argument("--BatchSize", required=True, help="How many samples to predict per batch")
 parser.add_argument("--device", required=True, help="GPU or CPU?")
 
+
 args = parser.parse_args()
 
 File_1_path = args.File1
@@ -34,40 +35,54 @@ if my_device=="GPU":
 else:
     device = 'cpu'
 
+
 #------------------------------------------------------------------------------------
 #Users need to input: 
 #File 1: Input sample info file (the column "cell_iname" should match the cell names in the row names of file 2). 
 #File 2: log2TPM data of transcriptomic profiles in cells. Row names are cell names, column names must use the same gene names in orders as shown in the demo data. For missing genes' expression, you may use the average expression of the other genes in the cell to impute.
 File_1 = pd.read_csv(File_1_path)
-
 #------------------------------------------------------------------------------------
-#Generate protein embeddings:
-#(The first time for downloading the model will take longer time)
-tokenizer = T5Tokenizer.from_pretrained('Rostlab/prot_t5_xl_half_uniref50-enc', do_lower_case=False)
-model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_half_uniref50-enc").to(device)
+# Generate protein embeddings:
+# First try to load embeddings from the cache. Only activate T5 for sequences missing from the cache.
+cache = torch.load('./model_checkpoint/uniprot_human_proteome_sp_cache.pt', map_location="cpu", weights_only=True)
+cache_embeddings = cache["embeddings"]
+cache_sequence_to_index = cache["sequence_to_index"]
+
 sequences = File_1["target_sequence"].unique().tolist()
 embeddings = []
 MAX_LENGTH = 1200
-for sequence in tqdm(sequences, desc="Generating embeddings"):
-    processed_sequence = " ".join(list(re.sub(r"[UZOB]", "X", sequence)))
-    processed_sequence = processed_sequence[:MAX_LENGTH]
-    original_length = min(len(sequence), MAX_LENGTH)
-    ids = tokenizer(processed_sequence, add_special_tokens=True, padding="longest", return_tensors="pt")
-    input_ids = ids["input_ids"].to(device)
-    attention_mask = ids["attention_mask"].to(device)
-    with torch.no_grad():
-        embedding_repr = model(input_ids=input_ids, attention_mask=attention_mask)
-    emb_per_residue = embedding_repr.last_hidden_state[0, :original_length]  # (length, hidden_dim)
-    emb_per_protein = emb_per_residue.mean(dim=0) 
-    embeddings.append(emb_per_protein.cpu())
-    del input_ids, attention_mask, embedding_repr, emb_per_residue
-    torch.cuda.empty_cache()
 
+missing_sequences = [sequence for sequence in sequences if sequence not in cache_sequence_to_index]
+missing_embedding_dict = {}
 
-protein_embeddings = pd.DataFrame([t.numpy() for t in embeddings], index = sequences)
+if len(missing_sequences) > 0:
+    tokenizer = T5Tokenizer.from_pretrained('Rostlab/prot_t5_xl_half_uniref50-enc', do_lower_case=False)
+    model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_half_uniref50-enc").to(device)
+    model.eval()
 
-#torch.save(embeddings, "./protein_embeddings.pt")
+    for sequence in tqdm(missing_sequences, desc="Generating missing embeddings"):
+        processed_sequence = " ".join(list(re.sub(r"[UZOB]", "X", sequence)))
+        processed_sequence = processed_sequence[:MAX_LENGTH]
+        original_length = min(len(sequence), MAX_LENGTH)
+        ids = tokenizer(processed_sequence, add_special_tokens=True, padding="longest", return_tensors="pt")
+        input_ids = ids["input_ids"].to(device)
+        attention_mask = ids["attention_mask"].to(device)
+        with torch.no_grad():
+            embedding_repr = model(input_ids=input_ids, attention_mask=attention_mask)
+        emb_per_residue = embedding_repr.last_hidden_state[0, :original_length]  # (length, hidden_dim)
+        emb_per_protein = emb_per_residue.mean(dim=0)
+        missing_embedding_dict[sequence] = emb_per_protein.cpu().numpy()
+        del input_ids, attention_mask, embedding_repr, emb_per_residue
+        torch.cuda.empty_cache()
 
+for sequence in sequences:
+    if sequence in cache_sequence_to_index:
+        idx = cache_sequence_to_index[sequence]
+        embeddings.append(cache_embeddings[idx].cpu().numpy())
+    else:
+        embeddings.append(missing_embedding_dict[sequence])
+
+protein_embeddings = pd.DataFrame(embeddings, index=sequences)
 
 #------------------------------------------------------------------------------------
 #Generate drug embeddings:
@@ -116,7 +131,12 @@ def predict_in_batches(model, batch_size, device="cpu"):
 model3 = torch.jit.load("./model_checkpoint/drug-protein_binding_affinity.pt", map_location=device)
 
 model3.eval()
-y = predict_in_batches(model3, int(float(batch_size)), device=device) #predicted values are log10(IC50) (IC50 is in the unit of nM) 
+y = predict_in_batches(model3, int(float(batch_size)), device=device) # predicted values are log10(IC50) (IC50 is in the unit of nM)
 File_1["prediction"] = y.numpy()
-File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
+
+output_file = './prediction/' + save_prediction_file_name + '.csv'
+File_1.to_csv(output_file, index=False)
+
+print(f"Prediction completed successfully. Output saved to: {output_file}")
+
 

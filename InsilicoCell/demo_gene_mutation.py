@@ -91,3 +91,4 @@ File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
 File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
 
+print(f"Prediction completed successfully. Output saved to: {'./prediction/' + save_prediction_file_name + '.csv'}")

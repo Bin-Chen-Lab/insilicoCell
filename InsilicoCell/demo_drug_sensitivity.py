@@ -106,3 +106,4 @@ File_1['prediction'] = np.exp(y.numpy()) - 1 #covert back to the original AUC sc
 
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
 
+print(f"Prediction completed successfully. Output saved to: {'./prediction/' + save_prediction_file_name + '.csv'}")

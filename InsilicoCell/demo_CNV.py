@@ -89,3 +89,4 @@ y = predict_in_batches(model3, int(float(batch_size)), device=device)
 File_1["prediction"] = y.numpy()
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
 
+print(f"Prediction completed successfully. Output saved to: {'./prediction/' + save_prediction_file_name + '.csv'}")
