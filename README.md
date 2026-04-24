@@ -1,7 +1,7 @@
 # InsilicoCell
 
 
-## Supported Prediction Tasks
+## Supported Prediction Tasks 
 
 | Task | Input | Output | Interpretation |
 |------|-------|--------|----------------|
