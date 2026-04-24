@@ -13,7 +13,7 @@
 | **Gene mutation status** | Gene name, cell line | Binary (0/1) | 1 = mutation present |
 | **Copy number variation (CNV)** | Gene name, cell line | log₂(copy number + 1) | Gene-level copy number |
 
-Tasks that require cell transcriptome data (File 2): drug-induced gene expression, drug response, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input.
+Tasks that require cell transcriptome data ([File 2](### File 1: Sample metadata (required for all tasks))): drug-induced gene expression, drug response, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input.
 
 ## Installation
 
