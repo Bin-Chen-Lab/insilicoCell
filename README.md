@@ -13,7 +13,7 @@
 | **Gene mutation status** | Gene name, cell line | Binary (0/1) | 1 = mutation present |
 | **Copy number variation (CNV)** | Gene name, cell line | log₂(copy number + 1) | Gene-level copy number |
 
-Tasks that require cell transcriptome data ([File 2](### File 1: Sample metadata (required for all tasks))): drug-induced gene expression, drug response, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input.
+Tasks that require cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)): drug-induced gene expression, drug response, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input, for these two tasks, if your protein is among the [Uniprot list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/uniprot_human_proteome_sp.csv), we recommend that you directly extract its sequence here, which will accelerate task prediction speed.
 
 ## Installation
 
