@@ -13,7 +13,7 @@
 | **Gene mutation status** | Gene name, cell line | Binary (0/1) | 1 = mutation present |
 | **Copy number variation (CNV)** | Gene name, cell line | log₂(copy number + 1) | Gene-level copy number |
 
-Tasks that require cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)): drug-induced gene expression, drug response, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input, for these two tasks, if your protein is among the [Uniprot list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/uniprot_human_proteome_sp.csv), we recommend that you directly copy its sequence here, which will accelerate task prediction speed.
+Tasks that require cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)): drug-induced gene expression, drug response, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input.
 
 ## Installation
 
@@ -48,7 +48,7 @@ A CSV file where each row is one prediction sample. Columns vary by task:
 | `SMILES` | Drug structure in SMILES notation | Drug expression, binding, drug response |
 | `cell_iname` | Cell line name (must match row names in File 2) | Drug expression, drug response, gene effect, mutation, CNV |
 | `gene_name` | Gene name from the [supported gene list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/gene_list.csv) (~20k genes) | Drug expression, TF-gene, gene effect, mutation, CNV |
-| `target_sequence` | Protein amino acid sequence | Binding, TF-gene |
+| `target_sequence` | Protein amino acid sequence (you can copy from [Uniprot list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/uniprot_human_proteome_sp.csv), or use other protein sequences) | Binding, TF-gene |
 | `time_h` | Treatment duration in hours | Drug expression |
 | `dose_uM` | Treatment concentration in μM | Drug expression |
 
