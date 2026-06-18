@@ -48,7 +48,7 @@ A CSV file where each row is one prediction sample. Columns vary by task:
 | `SMILES` | Drug structure in SMILES notation | Drug expression, binding, drug response |
 | `cell_iname` | Cell line name (must match row names in File 2) | Drug expression, drug response, gene effect, mutation, CNV |
 | `gene_name` | Gene name from the [supported gene list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/gene_list.csv) (~20k genes) | Drug expression, TF-gene, gene effect, mutation, CNV |
-| `target_sequence` | Protein amino acid sequence (you can copy from [Uniprot list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/uniprot_human_proteome_sp.csv), or use other protein sequences) | Binding, TF-gene |
+| `target_sequence` | Protein amino acid sequence | Binding, TF-gene |
 | `time_h` | Treatment duration in hours | Drug expression |
 | `dose_uM` | Treatment concentration in μM | Drug expression |
 
@@ -60,6 +60,8 @@ See example files in [`demo_data/`](InsilicoCell/demo_data/):
 [gene effect](InsilicoCell/demo_data/input_sample_info_gene_effect_score.csv) ·
 [mutation](InsilicoCell/demo_data/input_sample_info_gene_mutation.csv) ·
 [CNV](InsilicoCell/demo_data/input_sample_info_CNV.csv)
+
+For protein sequences, if your protein is among the [Uniprot list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/uniprot_human_proteome_sp.csv), we recommend you to directly copy its sequence from here, which will largely reduce model running time. You can also provide other protein sequences beyond the list, but will expect longer model running time.
 
 ### File 2: Cell transcriptome (required for 5 of 7 tasks)
 
