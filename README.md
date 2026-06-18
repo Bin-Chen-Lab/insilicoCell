@@ -61,7 +61,7 @@ See example files in [`demo_data/`](InsilicoCell/demo_data/):
 [mutation](InsilicoCell/demo_data/input_sample_info_gene_mutation.csv) ·
 [CNV](InsilicoCell/demo_data/input_sample_info_CNV.csv)
 
-*For protein amino acid sequence sequences, if your protein is among the [Uniprot list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/uniprot_human_proteome_sp.csv), we recommend you to directly copy its sequence from here, which will largely reduce model running time. You can also provide other protein sequences beyond the list, but will expect longer model running time.
+*For protein amino acid sequence sequences, if your protein is among the [Uniprot list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/uniprot_human_proteome_sp.csv), we recommend you to directly copy its sequence from here, which will largely reduce model running time. You can also provide other protein sequences beyond the list, but will cost longer model running time.
 
 ### File 2: Cell transcriptome (required for 5 of 7 tasks)
 
