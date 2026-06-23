@@ -9,7 +9,7 @@
 | **Drug-protein binding affinity** | SMILES, protein sequence | log₁₀(IC50) in nM | Lower = stronger binding |
 | **TF-gene association** | Gene name, TF protein sequence | Binary (0/1) | 1 = association exists |
 | **Drug response** | SMILES, cell line | AUC (0–30) | Lower = stronger growth inhibition |
-| **Gene effect score** | Gene name, cell line | Dependency score | >0 = reduces viability, <0 = improves growth |
+| **Gene effect score** | Gene name, cell line | Dependency score | More negative = stronger gene dependency |
 | **Gene mutation status** | Gene name, cell line | Binary (0/1) | 1 = mutation present |
 | **Copy number variation (CNV)** | Gene name, cell line | log₂(copy number + 1) | Gene-level copy number |
 
