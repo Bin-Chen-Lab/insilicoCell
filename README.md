@@ -5,15 +5,15 @@
 
 | Task | Input | Output | Interpretation |
 |------|-------|--------|----------------|
-| **Drug-induced gene expression** | SMILES, cell line, gene, time, dose | z-score (−10 to 10) | More positive = more up-regulation, more negative = more down-regulation |
+| **Drug-induced gene expression change** | SMILES, cell line, gene, time, dose | z-score (−10 to 10) | More positive = more up-regulation, more negative = more down-regulation |
 | **Drug-protein binding affinity** | SMILES, protein sequence | log₁₀(IC50) in nM | Lower = stronger binding |
 | **TF-gene association** | Gene name, TF protein sequence | Binary (0/1) | 1 = association exists |
-| **Drug response** | SMILES, cell line | AUC (0–30) | Lower = stronger growth inhibition |
+| **Drug sensitivity** | SMILES, cell line | AUC (0–30) | Lower = stronger cell growth inhibition |
 | **Gene effect score** | Gene name, cell line | Dependency score | More negative = stronger gene dependency |
 | **Gene mutation status** | Gene name, cell line | Binary (0/1) | 1 = mutation present |
 | **Copy number variation (CNV)** | Gene name, cell line | log₂(copy number + 1) | Gene-level copy number |
 
-Tasks that require cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)): drug-induced gene expression, drug response, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input.
+Tasks that require cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)): drug-induced gene expression change, drug sensitivity, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input.
 
 ## Installation
 
@@ -45,18 +45,18 @@ A CSV file where each row is one prediction sample. Columns vary by task:
 
 | Column | Description | Used by |
 |--------|-------------|---------|
-| `SMILES` | Drug structure in SMILES notation | Drug expression, binding, drug response |
-| `cell_iname` | Cell line name (must match row names in File 2) | Drug expression, drug response, gene effect, mutation, CNV |
-| `gene_name` | Gene name from the [supported gene list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/gene_list.csv) (~20k genes) | Drug expression, TF-gene, gene effect, mutation, CNV |
-| `target_sequence` | Protein amino acid sequence* | Binding, TF-gene |
-| `time_h` | Treatment duration in hours | Drug expression |
-| `dose_uM` | Treatment concentration in μM | Drug expression |
+| `SMILES` | Drug structure in SMILES notation | Drug-induced expression, drug-protein binding, drug sensitivity |
+| `cell_iname` | Cell line name (must match row names in File 2) | Drug-induced expression, drug sensitivity, gene effect, mutation, CNV |
+| `gene_name` | Gene name from the [supported gene list](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/gene_list.csv) (~20k genes) | Drug-induced expression, TF-gene, gene effect, mutation, CNV |
+| `target_sequence` | Protein amino acid sequence* | Drug-protein binding, TF-gene |
+| `time_h` | Treatment duration in hours | Drug-induced expression |
+| `dose_uM` | Treatment concentration in μM | Drug-induced expression |
 
 See example files in [`demo_data/`](InsilicoCell/demo_data/):
-[drug expression](InsilicoCell/demo_data/input_sample_info.csv) ·
-[binding](InsilicoCell/demo_data/input_sample_info_drug-protein_binding.csv) ·
+[drug-induced expression](InsilicoCell/demo_data/input_sample_info.csv) ·
+[drug-protein binding](InsilicoCell/demo_data/input_sample_info_drug-protein_binding.csv) ·
 [TF-gene](InsilicoCell/demo_data/input_sample_info_TF-gene_association.csv) ·
-[drug response](InsilicoCell/demo_data/input_sample_info_drug_response.csv) ·
+[drug sensitivity](InsilicoCell/demo_data/input_sample_info_drug_response.csv) ·
 [gene effect](InsilicoCell/demo_data/input_sample_info_gene_effect_score.csv) ·
 [mutation](InsilicoCell/demo_data/input_sample_info_gene_mutation.csv) ·
 [CNV](InsilicoCell/demo_data/input_sample_info_CNV.csv)
@@ -118,7 +118,7 @@ python demo_TF-gene_association.py \
 ```
 > Note: The first run downloads the T5 protein encoder model (~3 GB) from Hugging Face, which may take extra time.
 
-### Drug response
+### Drug sensitivity
 
 ```bash
 python demo_drug_sensitivity.py \
