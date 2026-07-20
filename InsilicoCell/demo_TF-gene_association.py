@@ -116,8 +116,8 @@ model3 = torch.jit.load("./model_checkpoint/TF-gene_association.pt", map_locatio
 model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device) #predicted values are probability
 File_1["prediction"] = y.numpy()
-File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
-File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
+#File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
+#File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
 
 output_file = './prediction/' + save_prediction_file_name + '.csv'
 File_1.to_csv(output_file, index=False)

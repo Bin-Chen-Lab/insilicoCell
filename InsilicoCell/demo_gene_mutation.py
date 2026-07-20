@@ -87,8 +87,8 @@ model3 = torch.jit.load("./model_checkpoint/gene_mutation_status.pt", map_locati
 model3.eval()
 y = predict_in_batches(model3, int(float(batch_size)), device=device)
 File_1["prediction"] = y.numpy()
-File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
-File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
+#File_1.loc[File_1['prediction'] > 0.5, 'prediction'] = 1
+#File_1.loc[File_1['prediction'] <= 0.5, 'prediction'] = 0
 File_1.to_csv('./prediction/' + save_prediction_file_name + '.csv')
 
 print(f"Prediction completed successfully. Output saved to: {'./prediction/' + save_prediction_file_name + '.csv'}")
