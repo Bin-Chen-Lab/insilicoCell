@@ -5,8 +5,8 @@
 
 | Task | Input | Output | Interpretation |
 |------|-------|--------|----------------|
-| **Drug-induced gene expression change** | SMILES, cell line, gene, time, dose | z-score (−10~10) | More positive represents more up-regulation, more negative represents more down-regulation |
-| **Drug-protein binding affinity** | SMILES, protein sequence | log₁₀(IC50) in nM | Lower represents stronger binding |
+| **Drug-induced gene expression change** | SMILES, cell line, gene, time, dose | z-score (−10~10) | More positive = more up-regulation, more negative = more down-regulation |
+| **Drug-protein binding affinity** | SMILES, protein sequence | log₁₀(IC50) in nM | Lower = stronger binding |
 | **TF-gene association** | Gene name, TF protein sequence | Probability (0~1) | >0.5 represents association, <=0.5 represents no association |
 | **Drug sensitivity** | SMILES, cell line | AUC (0~30) | Lower = stronger cell growth inhibition |
 | **Gene effect score** | Gene name, cell line | Dependency score | More negative = stronger gene dependency |
