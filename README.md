@@ -5,12 +5,12 @@
 
 | Task | Input | Output | Interpretation |
 |------|-------|--------|----------------|
-| **Drug-induced gene expression change** | SMILES, cell line, gene, time, dose | z-score (−10 to 10) | More positive = more up-regulation, more negative = more down-regulation |
-| **Drug-protein binding affinity** | SMILES, protein sequence | log₁₀(IC50) in nM | Lower = stronger binding |
-| **TF-gene association** | Gene name, TF protein sequence | Binary (0/1) | 1 = association exists |
-| **Drug sensitivity** | SMILES, cell line | AUC (0–30) | Lower = stronger cell growth inhibition |
+| **Drug-induced gene expression change** | SMILES, cell line, gene, time, dose | z-score (−10~10) | More positive represents more up-regulation, more negative represents more down-regulation |
+| **Drug-protein binding affinity** | SMILES, protein sequence | log₁₀(IC50) in nM | Lower represents stronger binding |
+| **TF-gene association** | Gene name, TF protein sequence | Probability (0~1) | >0.5 represents association, <=0.5 represents no association |
+| **Drug sensitivity** | SMILES, cell line | AUC (0~30) | Lower = stronger cell growth inhibition |
 | **Gene effect score** | Gene name, cell line | Dependency score | More negative = stronger gene dependency |
-| **Gene mutation status** | Gene name, cell line | Binary (0/1) | 1 = mutation present |
+| **Gene mutation status** | Gene name, cell line | Probability (0~1) | >0.5 represents mutation, <=0.5 represents no mutation |
 | **Copy number variation (CNV)** | Gene name, cell line | log₂(copy number + 1) | Gene-level copy number |
 
 Tasks that require cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)): drug-induced gene expression change, drug sensitivity, gene effect score, gene mutation status, and CNV. The drug-protein binding and TF-gene association tasks do **not** require transcriptome input.
