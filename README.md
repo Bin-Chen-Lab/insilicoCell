@@ -158,6 +158,15 @@ python demo_CNV.py \
 
 Predictions are saved as CSV files in `InsilicoCell/prediction/`. Each output file contains all columns from your input File 1 with an appended `prediction` column.
 
+## Benchmarking evaluation
+
+We have released the [benchmarking evaluation datasets](https://huggingface.co/datasets/binchenlab/InsilicoCell) for zero-shot prediction of the model. Check the link for data file descriptions. We will further release the training set and model fine-tuning code after the acceptance of the paper.
+
+For downloading, prediction and evaluation procedures on the benchmarking datasets, refer to [this tutorial](https://github.com/Bin-Chen-Lab/insilicoCell/edit/main/InsilicoCell/benchmarking.md)
+
+
+
+
 
 
 
