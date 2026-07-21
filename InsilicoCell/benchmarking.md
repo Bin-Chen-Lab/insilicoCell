@@ -124,7 +124,7 @@ python demo_CNV.py \
 ### Parameters
 | Parameter | Description |
 |-----------|-------------|
-| `--files` | Path to InsilicoCell's output prediction filename |
+| `--files` | Path to InsilicoCell's output prediction filename. Support multiple files as input |
 | `--out_dir` | Where to save the files of prediction performance summary |
 
 Evaluation on a single prediction file, using the example of drug sensitivity task:
