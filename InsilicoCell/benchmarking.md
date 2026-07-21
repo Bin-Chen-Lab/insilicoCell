@@ -26,6 +26,8 @@ The benchmarking datasets use [cell_line_expression_matrix.csv](https://chenlab-
 ## Running Predictions
 This is the same as [previously described](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/README.md#running-predictions). According to your device capacity, you can revise on the `--BatchSize` and `--device` parameters, but keep the other parameters unchanged:
 
+### Drug-induced gene expression
+
 ```bash
 python demo_drug-induced_gene_expression.py \
   --File1 ./demo_data/drug-induced_gene_expression_change_sample-level_holdout_test_set.csv \
@@ -40,6 +42,8 @@ python demo_drug-induced_gene_expression.py \
   --out pred_drug-induced_gene_expression_change_entity-level_holdout_test_set --BatchSize 512 --device GPU
 ```
 
+### Drug-protein binding affinity
+
 ```bash
 python demo_drug-protein_binding_affinity.py \
   --File1 ./demo_data/drug-protein_binding_sample-level_holdout_test_set.csv \
@@ -52,6 +56,8 @@ python demo_drug-protein_binding_affinity.py \
   --out pred_drug-protein_binding_entity-level_holdout_test_set --BatchSize 512 --device GPU
 ```
 
+### TF-gene association
+
 ```bash
 python demo_TF-gene_association.py \
   --File1 ./demo_data/TF-gene_association_sample-level_holdout_test_set.csv \
@@ -63,6 +69,8 @@ python demo_TF-gene_association.py \
   --File1 ./demo_data/TF-gene_association_entity-level_holdout_test_set.csv \
   --out pred_TF-gene_association_entity-level_holdout_test_set --BatchSize 512 --device GPU
 ```
+
+### Drug sensitivity
 
 ```bash
 python demo_drug_sensitivity.py \
@@ -78,6 +86,8 @@ python demo_drug_sensitivity.py \
   --out pred_drug_sensitivity_entity-level_holdout_test_set --BatchSize 512 --device GPU
 ```
 
+### Gene effect score
+
 ```bash
 python demo_gene_effect_score.py \
   --File1 ./demo_data/gene_effect_score_sample-level_holdout_test_set.csv \
@@ -92,6 +102,8 @@ python demo_gene_effect_score.py \
   --out pred_gene_effect_score_entity-level_holdout_test_set --BatchSize 512 --device GPU
 ```
 
+### Gene mutation status
+
 ```bash
 python demo_gene_mutation.py \
   --File1 ./demo_data/gene_mutation_sample-level_holdout_test_set.csv \
@@ -105,6 +117,8 @@ python demo_gene_mutation.py \
   --File2 ./demo_data/cell_line_expression_matrix.csv \
   --out pred_gene_mutation_entity-level_holdout_test_set --BatchSize 512 --device GPU
 ```
+
+### CNV
 
 ```bash
 python demo_CNV.py \
