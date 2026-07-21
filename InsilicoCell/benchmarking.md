@@ -121,6 +121,7 @@ python demo_CNV.py \
 
 ## Performance evaluation
 
+### Parameters
 | Parameter | Description |
 |-----------|-------------|
 | `--files` | Path to InsilicoCell's output prediction filename |
@@ -138,7 +139,7 @@ python evaluate_predictions.py --files ./prediction/pred_drug_sensitivity_sample
 
 Performance summary files are saved as CSV files in `InsilicoCell/evaluation/`. The file "summary_mean_across_entities.csv" contains the mean entity-wise performance. Each file in the subfolder `per_entity` contains more detailed per-entity performance. 
 
-Reference on the mean entity-wise performance per task from InsilicoCell's prediction:
+Reference on the mean entity-wise performance per task from InsilicoCell's prediction is shown below:
 | Task | Type | Correlation (r) | AUROC |
 |------|-------|--------|----------------|
 | Drug-induced gene expression change | Regression | 0.67 (sample-level holdout) / 0.41 (entity-level holdout)|  |
