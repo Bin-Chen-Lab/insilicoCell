@@ -162,7 +162,7 @@ Predictions are saved as CSV files in `InsilicoCell/prediction/`. Each output fi
 
 We have released the [benchmarking evaluation datasets](https://huggingface.co/datasets/binchenlab/InsilicoCell) for zero-shot prediction of the model. Check the link for data file descriptions. We will further release the training set and model fine-tuning code after the acceptance of the paper.
 
-For downloading, prediction and evaluation procedures on the benchmarking datasets, refer to [this tutorial](https://github.com/Bin-Chen-Lab/insilicoCell/edit/main/InsilicoCell/benchmarking.md)
+For downloading, prediction and evaluation procedures on the benchmarking datasets, refer to [this tutorial](https://github.com/Bin-Chen-Lab/insilicoCell/edit/main/InsilicoCell/benchmarking.md).
 
 
 
