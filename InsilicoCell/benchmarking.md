@@ -143,12 +143,12 @@ Reference on the mean entity-wise performance per task from InsilicoCell's predi
 | Task | Type | Correlation (r) | AUROC |
 |------|-------|--------|----------------|
 | Drug-induced gene expression change | Regression | 0.67 (sample-level holdout) / <Br> 0.41 (entity-level holdout)|  |
-| Drug-protein binding affinity | Regression | 0.77 (sample-level holdout) / 0.68 (entity-level holdout) |  |
-| TF-gene association | Classification |  | 0.69 (sample-level holdout) / 0.64 (entity-level holdout) |
-| Drug sensitivity | Regression | 0.90 (sample-level holdout) / 0.80 (entity-level holdout) |  |
-| Gene effect score | Regression | 0.93 (sample-level holdout) / 0.91 (entity-level holdout) |  |
-| Gene mutation status | Classification |  | 0.69 (sample-level holdout) / 0.68 (entity-level holdout) |
-| Copy number variation (CNV) | Regression | 0.92 (sample-level holdout) / 0.47 (entity-level holdout) |  |
+| Drug-protein binding affinity | Regression | 0.77 (sample-level holdout) / <Br> 0.68 (entity-level holdout) |  |
+| TF-gene association | Classification |  | 0.69 (sample-level holdout) / <Br> 0.64 (entity-level holdout) |
+| Drug sensitivity | Regression | 0.90 (sample-level holdout) / <Br> 0.80 (entity-level holdout) |  |
+| Gene effect score | Regression | 0.93 (sample-level holdout) / <Br> 0.91 (entity-level holdout) |  |
+| Gene mutation status | Classification |  | 0.69 (sample-level holdout) / <Br> 0.68 (entity-level holdout) |
+| Copy number variation (CNV) | Regression | 0.92 (sample-level holdout) / <Br> 0.47 (entity-level holdout) |  |
 
 
 
