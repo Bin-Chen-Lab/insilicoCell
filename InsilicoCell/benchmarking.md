@@ -142,7 +142,8 @@ Performance summary files are saved as CSV files in `InsilicoCell/evaluation/`. 
 Reference on the mean entity-wise performance per task from InsilicoCell's prediction is shown below:
 | Task | Type | Correlation (r) | AUROC |
 |------|-------|--------|----------------|
-| Drug-induced gene expression change | Regression | 0.67 (sample-level holdout) / 0.41 (entity-level holdout)|  |
+| Drug-induced gene expression change | Regression | 0.67 (sample-level holdout) 
+/ 0.41 (entity-level holdout)|  |
 | Drug-protein binding affinity | Regression | 0.77 (sample-level holdout) / 0.68 (entity-level holdout) |  |
 | TF-gene association | Classification |  | 0.69 (sample-level holdout) / 0.64 (entity-level holdout) |
 | Drug sensitivity | Regression | 0.90 (sample-level holdout) / 0.80 (entity-level holdout) |  |
