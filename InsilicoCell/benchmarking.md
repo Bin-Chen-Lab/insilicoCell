@@ -50,6 +50,7 @@ python demo_drug-protein_binding_affinity.py \
 python demo_drug-protein_binding_affinity.py \
   --File1 ./demo_data/drug-protein_binding_entity-level_holdout_test_set.csv \
   --out pred_drug-protein_binding_entity-level_holdout_test_set --BatchSize 512 --device GPU
+```
 
 ```bash
 python demo_TF-gene_association.py \
