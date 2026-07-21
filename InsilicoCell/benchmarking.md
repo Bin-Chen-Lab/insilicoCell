@@ -23,6 +23,9 @@ huggingface-cli download binchenlab/InsilicoCell drug_sensitivity_sample-level_h
 
 The benchmarking datasets use [cell_line_expression_matrix.csv](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/cell_line_expression_matrix.csv) as [File2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks). You need to download it and save to `./demo_data/`.
 
+### Running Predictions:
+This is the same as [previously described](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/README.md#running-predictions). According to your device capacity, you can revise on the `--BatchSize` and `--device` parameters, but keep the other parameters unchanged.
+
 ```bash
 python demo_drug-induced_gene_expression.py \
   --File1 ./demo_data/drug-induced_gene_expression_change_sample-level_holdout_test_set.csv \
