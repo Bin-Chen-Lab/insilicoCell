@@ -1,8 +1,8 @@
-## Benchmarking evaluation
+# Benchmarking evaluation
 
 We have released the [benchmarking evaluation datasets](https://huggingface.co/datasets/binchenlab/InsilicoCell) for zero-shot prediction of the model. Check the link and read data file descriptions. We will further release the training set and model fine-tuning code after the acceptance of the paper.
 
-### Downloading benchmaarking datasets:
+## Downloading benchmaarking datasets
 
 All commands are run from the `InsilicoCell/` directory:
 
@@ -23,8 +23,8 @@ huggingface-cli download binchenlab/InsilicoCell drug_sensitivity_sample-level_h
 
 The benchmarking datasets use [cell_line_expression_matrix.csv](https://chenlab-data-public.s3.amazonaws.com/InsilicoCell/cell_line_expression_matrix.csv) as [File2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks). You need to download it and save to `./demo_data/`.
 
-### Running Predictions:
-This is the same as [previously described](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/README.md#running-predictions). According to your device capacity, you can revise on the `--BatchSize` and `--device` parameters, but keep the other parameters unchanged.
+## Running Predictions
+This is the same as [previously described](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/README.md#running-predictions). According to your device capacity, you can revise on the `--BatchSize` and `--device` parameters, but keep the other parameters unchanged:
 
 ```bash
 python demo_drug-induced_gene_expression.py \
@@ -118,5 +118,46 @@ python demo_CNV.py \
   --File2 ./demo_data/cell_line_expression_matrix.csv \
   --out pred_CNV_entity-level_holdout_test_set --BatchSize 512 --device GPU
 ```
+
+## Performance evaluation
+
+| Parameter | Description |
+|-----------|-------------|
+| `--files` | Path to InsilicoCell's output prediction filename |
+| `--out_dir` | Where to save the files of prediction performance summary |
+
+Evaluation on a single prediction file, using the example of drug sensitivity task:
+```bash
+python evaluate_predictions.py --files ./prediction/pred_drug_sensitivity_sample-level_holdout_test_set.csv --out_dir ./evaluation
+```
+
+Evaluation on multiple prediction files, using the example of drug sensitivity task:
+```bash
+python evaluate_predictions.py --files ./prediction/pred_drug_sensitivity_sample-level_holdout_test_set.csv ./prediction/pred_drug_sensitivity_entity-level_holdout_test_set.csv --out_dir ./evaluation
+```
+
+Performance summary files are saved as CSV files in `InsilicoCell/evaluation/`. The file "summary_mean_across_entities.csv" contains the mean entity-wise performance. Each file in the subfolder `per_entity` contains more detailed per-entity performance. 
+
+Reference on the mean entity-wise performance per task from InsilicoCell's prediction:
+| Task | Type | Correlation (r) | AUROC |
+|------|-------|--------|----------------|
+| Drug-induced gene expression change | Regression | 0.67 (sample-level holdout) / 0.41 (entity-level holdout)|  |
+| Drug-protein binding affinity | Regression | 0.77 (sample-level holdout) / 0.68 (entity-level holdout) |  |
+| TF-gene association | Classification |  | 0.69 (sample-level holdout) / 0.64 (entity-level holdout) |
+| Drug sensitivity | Regression | 0.90 (sample-level holdout) / 0.80 (entity-level holdout) |  |
+| Gene effect score | Regression | 0.93 (sample-level holdout) / 0.91 (entity-level holdout) |  |
+| Gene mutation status | Classification |  | 0.69 (sample-level holdout) / 0.68 (entity-level holdout) |
+| Copy number variation (CNV) | Regression | 0.92 (sample-level holdout) / 0.47 (entity-level holdout) |  |
+
+
+
+
+
+
+
+
+
+
+
 
 
