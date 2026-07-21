@@ -138,7 +138,7 @@ Evaluation on multiple prediction files, using the example of drug sensitivity t
 python evaluate_predictions.py --files ./prediction/pred_drug_sensitivity_sample-level_holdout_test_set.csv ./prediction/pred_drug_sensitivity_entity-level_holdout_test_set.csv --out_dir ./evaluation
 ```
 
-Performance summary files are saved as CSV files in `InsilicoCell/evaluation/`. The file "summary_mean_across_entities.csv" contains the mean entity-wise performance. Each file in the subfolder `per_entity` contains more detailed per-entity performance. 
+Performance summary files are saved as CSV files in `InsilicoCell/evaluation/`. The file "summary_mean_across_entities.csv" contains the mean entity-wise performance, where regression tasks utilize correlation (r), and classification tasks utilize AUROC between prediction and ground truth values. Each file in the subfolder `per_entity` contains more detailed per-entity performance. 
 
 Reference on the mean entity-wise performance per task from InsilicoCell's prediction is shown below:
 | Task | Type | Correlation (r) | AUROC |
