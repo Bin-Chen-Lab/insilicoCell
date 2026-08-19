@@ -8,7 +8,7 @@ InsilicoCell can be used in two ways:
 
 2. **Terminal interface:** install and run the original Python scripts on your own laptop, workstation, or server. This is especially recommended if you have a high-capacity server which runs fast.
 
-Internally, InsilicoCell is built on [seven pretrained tasks](https://github.com/Bin-Chen-Lab/insilicoCell#21-internally-built-prediction-tasks).
+Internally, InsilicoCell is built on [seven pretrained tasks](https://github.com/Bin-Chen-Lab/insilicoCell#21-supported-prediction-tasks).
 
 # 1. Use InsilicoCell from Claude/ChatGPT desktop
 
