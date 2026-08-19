@@ -20,11 +20,13 @@ https://apps.octad.org/insilicocell/mcp
 
 **ChatGPT/Codex desktop:** open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`, choose **Streamable HTTP**, paste the URL above, save, and restart the app. This follows the [official OpenAI MCP setup](https://learn.chatgpt.com/docs/extend/mcp?surface=cli#configure-in-the-chatgpt-desktop-app).
 
-![chatGPT interface](<Screenshot 2026-08-19 at 4.41.43 PM.png>)
+![chatGPT interface](<img width="1439" height="853" alt="Screenshot 2026-08-19 at 4 29 53 PM" src="https://github.com/user-attachments/assets/322211c2-a374-4d57-8a69-f66fe5fa05bb" />
+)
 
 **Claude desktop:** open **Settings → Connectors → Add → Add custom connector**, name it `InsilicoCell`, paste the URL above, click "continue", and restart the app. 
 
-![Claude interface](<Screenshot 2026-08-19 at 4.45.25 PM.png>)
+![Claude interface](<img width="1317" height="1011" alt="Screenshot 2026-08-19 at 4 41 43 PM" src="https://github.com/user-attachments/assets/81e71b15-d8bb-4fa1-8bb3-210e38e05377" />
+)
 
 ### 1.2. Ask questions naturally
 
