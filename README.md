@@ -63,7 +63,7 @@ Large screens run in the background. You may close the conversation and later as
 
 # 2. Use InsilicoCell from terminal interface
 
-## 2.1. Internally Built Prediction Tasks 
+## 2.1. Internally Built Tasks 
 
 | Task | Input | Output | Interpretation |
 |------|-------|--------|----------------|
