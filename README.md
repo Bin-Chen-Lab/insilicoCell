@@ -21,7 +21,7 @@ https://apps.octad.org/insilicocell/mcp
 ```
 
 ### Codex (ChatGPT) desktop:
-open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`, choose **Streamable HTTP**, paste the URL above, save, and restart the app. This follows the [official OpenAI MCP setup](https://learn.chatgpt.com/docs/extend/mcp?surface=cli#configure-in-the-chatgpt-desktop-app).
+open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`, choose **Streamable HTTP**, paste the URL above, click on **save**, and restart the app. This follows the [official OpenAI MCP setup](https://learn.chatgpt.com/docs/extend/mcp?surface=cli#configure-in-the-chatgpt-desktop-app).
 
 ![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.41.43%20PM.png)
 
@@ -31,7 +31,7 @@ Make sure that InsilicoCell is connected in the **Codex** interface by typing **
 
 
 ### Claude desktop:
-open **Settings → Connectors → Add → Add custom connector**, name it `InsilicoCell`, paste the URL above, click "continue", and restart the app. 
+open **Settings → Connectors → Add → Add custom connector**, name it `InsilicoCell`, paste the URL above, click on **continue**, and restart the app. 
 
 ![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.45.25%20PM.png)
 
