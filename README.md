@@ -34,9 +34,9 @@ Examples:
 
 - “Using InsilicoCell, predict the drug sensitivity of erlotinib in HepG2.” 
 
-- “Can you use InsilicoCell to infer how will this compound, O=C(NOCC(O)CO)c1cnc2ncnn2c1Nc1ccc(I)cc1F, affect MYC expression in liver cancer cells?”
+- “Can you use InsilicoCell to infer whether or not this compound, O=C(NOCC(O)CO)c1cnc2ncnn2c1Nc1ccc(I)cc1F, affects MYC expression in liver cancer cells?”
 
-- “Use InsilicoCell to screen compounds that kill lung cancer cells.”
+- “Use InsilicoCell to screen the built-in 5 million compounds and rank the top candidates that kill lung cancer cells. You can take a commonly used lung cancer cell line as an example.”
 
 - “Predict compounds which strongly bind to PD-L1 protein via InsilicoCell.”
 
