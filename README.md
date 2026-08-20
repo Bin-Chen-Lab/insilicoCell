@@ -20,13 +20,25 @@ The hosted Streamable HTTP MCP endpoint is:
 https://apps.octad.org/insilicocell/mcp
 ```
 
-**ChatGPT/Codex desktop:** open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`, choose **Streamable HTTP**, paste the URL above, save, and restart the app. This follows the [official OpenAI MCP setup](https://learn.chatgpt.com/docs/extend/mcp?surface=cli#configure-in-the-chatgpt-desktop-app).
+### ChatGPT/Codex desktop:
+open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`, choose **Streamable HTTP**, paste the URL above, save, and restart the app. This follows the [official OpenAI MCP setup](https://learn.chatgpt.com/docs/extend/mcp?surface=cli#configure-in-the-chatgpt-desktop-app).
 
 ![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.41.43%20PM.png)
 
-**Claude desktop:** open **Settings → Connectors → Add → Add custom connector**, name it `InsilicoCell`, paste the URL above, click "continue", and restart the app. 
+Make sure that InsilicoCell is connected in the ChatGPT interface:
+
+![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%201.46.54%20AM.png)
+
+
+### Claude desktop:
+open **Settings → Connectors → Add → Add custom connector**, name it `InsilicoCell`, paste the URL above, click "continue", and restart the app. 
 
 ![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.45.25%20PM.png)
+
+Make sure that InsilicoCell is connected in the Claude interface:
+
+![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%201.47.33%20AM.png)
+
 
 ## 1.2. Ask questions naturally
 
