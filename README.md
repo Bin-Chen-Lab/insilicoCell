@@ -52,7 +52,7 @@ Examples:
 
 <Br> 
 
-You can chat with InsilicoCell for multiple rounds in the same conversation. Depending on your question, the interface may need to ask you for more details for a better answer. For example, if you ask questions about perturbing a cellular context that is not in the built-in library of InsilicoCell, the assistant will first ask you to either upload the originally untreated cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)), or it will search on web for the originally untreated cell transcriptome data. After that, it will predict the perturbed state of that cellular context.
+You can chat with InsilicoCell for multiple rounds in the same conversation. Depending on your question, the interface may need to discuss with you for more details for a better answer. For example, if you ask questions about perturbing a cellular context that is not in the built-in library of InsilicoCell, the assistant will first ask you to either upload the originally untreated cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)), or it will search on web for the originally untreated cell transcriptome data. After that, it will predict the perturbed state of that cellular context.
 
 For drug screening questions, the assistant will offer two choices:
 
