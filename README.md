@@ -4,13 +4,13 @@ InsilicoCell is a virtual platform for cellular functional profile prediction an
 
 InsilicoCell can be used in two ways:
 
-1. **Claude/chatGPT desktop interface (recommended for non-programmers):** ask biological questions to InsilicoCell in ordinary language through the chatting interface, which connects to our background remote server to run InsilicoCell.
+1. **Claude/ChatGPT's Codex desktop interface (recommended for non-programmers):** ask biological questions to InsilicoCell in ordinary language through the chatting interface, which connects to our background remote server to run InsilicoCell.
 
 2. **Terminal interface:** install and run the original Python scripts on your own laptop, workstation, or server. This is especially recommended if you need to do large-scale inference, as there can be fewer limitations on runtime and data size on your own device.
 
 Internally, InsilicoCell is built on [seven pretrained tasks](https://github.com/Bin-Chen-Lab/insilicoCell#21-supported-prediction-tasks).
 
-# 1. Use InsilicoCell from Claude/ChatGPT desktop
+# 1. Use InsilicoCell from Claude/ChatGPT's Codex desktop
 
 ## 1.1. Connect once
 
@@ -20,7 +20,7 @@ The hosted Streamable HTTP MCP endpoint is:
 https://apps.octad.org/insilicocell/mcp
 ```
 
-### ChatGPT/Codex desktop:
+### Codex desktop:
 open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`, choose **Streamable HTTP**, paste the URL above, save, and restart the app. This follows the [official OpenAI MCP setup](https://learn.chatgpt.com/docs/extend/mcp?surface=cli#configure-in-the-chatgpt-desktop-app).
 
 ![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.41.43%20PM.png)
