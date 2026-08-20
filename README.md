@@ -252,8 +252,8 @@ For downloading, prediction and evaluation procedures on the benchmarking datase
 # Cumulative usage statistics
 
 <!-- USAGE_METRICS_START -->
-Total unique InsilicoCell installations: 1  
-Total completed predictions: 1  
+Total unique InsilicoCell installations: 9  
+Total completed predictions: 31  
 Total GitHub release downloads: 0  
 Tracking began: 2026-08-19
 <!-- USAGE_METRICS_END -->
