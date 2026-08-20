@@ -6,7 +6,7 @@ InsilicoCell can be used in two ways:
 
 1. **Claude/chatGPT desktop interface (recommended for non-programmers):** ask biological questions to InsilicoCell in ordinary language through the chatting interface, which connects to our background remote server to run InsilicoCell.
 
-2. **Terminal interface:** install and run the original Python scripts on your own laptop, workstation, or server. This is especially recommended if you have a high-capacity server which runs fast.
+2. **Terminal interface:** install and run the original Python scripts on your own laptop, workstation, or server. This is especially recommended if you need to do large-scale inference, as there can be fewer limitations on runtime and data size.
 
 Internally, InsilicoCell is built on [seven pretrained tasks](https://github.com/Bin-Chen-Lab/insilicoCell#21-supported-prediction-tasks).
 
@@ -38,7 +38,7 @@ Examples:
 
 - “Use InsilicoCell to screen the built-in 5 million compounds and rank the top candidates that kill lung cancer cells. You can take a commonly used lung cancer cell line as an example.”
 
-- “Predict compounds which strongly bind to PD-L1 protein via InsilicoCell.”
+- “Predict compounds which strongly bind to PD-L1 protein via InsilicoCell. You can screen on the built-in compound library and search for PD-L1 sequence if needed.”
 
 - "Use InsilicoCell to rank the importance of the MYC gene in various types of cancer. In which type of cancer is it the most important?"
 
