@@ -34,15 +34,15 @@ Examples:
 
 - “Using InsilicoCell, predict the drug sensitivity of erlotinib in HepG2.” 
 
-- “Can you use InsilicoCell to infer how will this compound, C=CC(=O)N1CCc2ccc(-n3c(=O)ccc4cnc5ccc(-c6cnn(C)c6)cc5c43)cc21, affect MYC expression in lung cancer cells?”
+- “Can you use InsilicoCell to infer how will this compound, O=C(NOCC(O)CO)c1cnc2ncnn2c1Nc1ccc(I)cc1F, affect MYC expression in liver cancer cells?”
 
 - “Use InsilicoCell to screen compounds that kill lung cancer cells.”
 
-- “Find compounds which potentially bind to PD-L1 protein via InsilicoCell.”
+- “Predict compounds which strongly bind to PD-L1 protein via InsilicoCell.”
 
-- "How important is the MYC gene in HepG2 cells?"
+- "Use InsilicoCell to rank the importance of the MYC gene in various types of cancer. In which type of cancer is it the most important?"
 
-You can chat with InsilicoCell for multiple rounds in the same conversation. For a broad question, the interface may ask you to provide more details in further conversation. Note that if you ask questions about perturbing a cellular context that is not in the built-in library of InsilicoCell, the assistant will first ask you to either upload the originally untreated cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)), or it will search on web for the originally untreated cell transcriptome data. After that, it will predict the perturbed state of that cellular context.
+You can chat with InsilicoCell for multiple rounds in the same conversation. Depending on your question, the interface may need to ask you for more details for a better answer. For example, if you ask questions about perturbing a cellular context that is not in the built-in library of InsilicoCell, the assistant will first ask you to either upload the originally untreated cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)), or it will search on web for the originally untreated cell transcriptome data. After that, it will predict the perturbed state of that cellular context.
 
 For drug screening questions, the assistant will offer two choices:
 
