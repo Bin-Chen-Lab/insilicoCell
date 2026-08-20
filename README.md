@@ -1,6 +1,6 @@
 # InsilicoCell
 
-InsilicoCell is a platform for cellular functional profile prediction and multi-objective drug screening.
+InsilicoCell is a virtual platform for cellular functional profile prediction and multi-objective drug screening.
 
 InsilicoCell can be used in two ways:
 
