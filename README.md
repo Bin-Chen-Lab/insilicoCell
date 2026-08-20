@@ -36,7 +36,7 @@ Examples:
 
 - “Can you use InsilicoCell to infer whether or not this compound, O=C(NOCC(O)CO)c1cnc2ncnn2c1Nc1ccc(I)cc1F, affects MYC expression in liver cancer cells?”
 
-- “Use InsilicoCell to screen the built-in 5 million compounds and rank the top candidates that kill lung cancer cells. You can take a commonly used lung cancer cell line as an example.”
+- “Use InsilicoCell to identify top compound candidates that kill lung cancer cells. You can screen on the built-in 5 million compounds and take a commonly used lung cancer cell line as an example.”
 
 - “Predict compounds which strongly bind to PD-L1 protein via InsilicoCell. You can screen on the built-in compound library and search for PD-L1 sequence if needed.”
 
