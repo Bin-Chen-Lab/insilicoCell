@@ -25,7 +25,7 @@ open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`
 
 ![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.41.43%20PM.png)
 
-Make sure that InsilicoCell is connected in the Codex interface by typing **"/mcp"** in the chatbot, click on **MCP** and see if InsilicoCell is there:
+Make sure that InsilicoCell is connected in the Codex interface by typing **"/mcp"** in the chatbot, click on **MCP** and see if InsilicoCell is enabled there:
 
 ![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%2011.35.10%20AM.png)
 
@@ -35,7 +35,7 @@ open **Settings → Connectors → Add → Add custom connector**, name it `Insi
 
 ![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.45.25%20PM.png)
 
-Make sure that InsilicoCell is connected in the Claude interface by clicking on the **+ → Connectors** and see if InsilicoCell is there:
+Make sure that InsilicoCell is connected in the Claude interface by clicking on the **+ → Connectors** and see if InsilicoCell is enabled there:
 
 ![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%2011.38.45%20AM.png)
 
