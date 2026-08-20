@@ -46,7 +46,7 @@ Examples:
 
 <p align="center">
   <img src="https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%208.47.15%20PM.png" width="40%" />
-  <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+  <span>&nbsp;&nbsp;</span>
   <img src="https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%209.01.10%20PM.png" width="55%" />
 </p>
 
