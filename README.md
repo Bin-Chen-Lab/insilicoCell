@@ -77,7 +77,7 @@ Large screens run in the background. You may close the conversation and later as
 
 | Item | Hosted-service policy |
 |---|---|
-| Maximum run time | 10 hours per background screening job |
+| Maximum run time | 10 hours per background screening job. For jobs running beyond 10 hours, we recommend you to use the [terminal interface](https://github.com/Bin-Chen-Lab/insilicoCell#2-use-insilicocell-from-terminal-interface)|
 | Inline prediction request | Up to 5,000 rows; larger libraries use the background workflow |
 | User upload file size | Up to 1 GB per uncompressed file |
 | Accepted user compound library | CSV with `compound_id` and `SMILES` |
