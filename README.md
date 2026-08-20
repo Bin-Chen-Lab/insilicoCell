@@ -25,9 +25,9 @@ open **Settings → Plugins → Add → Add MCP server**, name it `InsilicoCell`
 
 ![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.41.43%20PM.png)
 
-Make sure that InsilicoCell is connected in the ChatGPT interface:
+Make sure that InsilicoCell is connected in the Codex interface by typing **"/mcp"** in the chatbot, click on **MCP** and see if InsilicoCell is there:
 
-![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%201.46.54%20AM.png)
+![chatGPT interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%2011.35.10%20AM.png)
 
 
 ### Claude desktop:
@@ -35,9 +35,9 @@ open **Settings → Connectors → Add → Add custom connector**, name it `Insi
 
 ![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%204.45.25%20PM.png)
 
-Make sure that InsilicoCell is connected in the Claude interface:
+Make sure that InsilicoCell is connected in the Claude interface by clicking on the **+ → Connectors** and see if InsilicoCell is there:
 
-![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%201.47.33%20AM.png)
+![Claude interface](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-20%20at%2011.38.45%20AM.png)
 
 
 ## 1.2. Ask questions naturally
