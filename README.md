@@ -40,7 +40,7 @@ Make sure that InsilicoCell is connected in the **Codex** interface by typing **
 
 ## 1.2. Ask questions naturally
 
-Examples:
+Example questions and requests:
 
 - “Using InsilicoCell, predict the drug sensitivity of erlotinib in HepG2.” 
 
@@ -54,6 +54,8 @@ Examples:
 
 <Br> 
 
+Example answers from the interface:
+
 <p align="center">
   <img src="https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%208.47.15%20PM.png" width="40%" />
   <span>&nbsp;&nbsp;</span>
@@ -61,6 +63,8 @@ Examples:
 </p>
 
 <Br> 
+
+Another example involving a longer conversation with InsilicoCell on the topic of PD-L1 inhibitor screening can be viewed [here](https://claude.ai/share/aaea143e-17dc-4e3d-9f10-1be214f6b782).
 
 You can chat with InsilicoCell for multiple rounds in the same conversation. Depending on your question, the interface may need to discuss with you for more details for a better answer. For example, if you ask questions about perturbing a cellular context that is not in the built-in library of InsilicoCell, the assistant will first ask you to either upload the originally untreated cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)), or it will search on web for the originally untreated cell transcriptome data. After that, it will predict the perturbed state of that cellular context.
 
