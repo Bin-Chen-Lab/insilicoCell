@@ -4,7 +4,7 @@ InsilicoCell is a virtual platform for cellular functional profile prediction an
 
 InsilicoCell can be used in two ways:
 
-1. **Claude/Codex (ChatGPT) desktop interface (recommended for non-programmers):** ask biological questions to InsilicoCell in ordinary language through the chatting interface, which connects to our background remote server to run InsilicoCell.
+1. **Claude/Codex (ChatGPT) desktop interface (recommended for non-programmers):** ask biological questions to InsilicoCell in ordinary language through the chatting interface, which connects to our background remote server to run InsilicoCell. A list of current APIs can be viewed [here](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/API.md).
 
 2. **Terminal interface:** install and run the original Python scripts on your own laptop, workstation, or server. This is especially recommended if you need to do large-scale inference, as there can be fewer limitations on runtime and data size on your own device.
 
