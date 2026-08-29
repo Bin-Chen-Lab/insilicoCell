@@ -54,7 +54,7 @@ Example questions and requests:
 
 <Br> 
 
-Example answers from the interface:
+Example answers from the Claude interface:
 
 <p align="center">
   <img src="https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/Screenshot%202026-08-19%20at%208.47.15%20PM.png" width="40%" />
