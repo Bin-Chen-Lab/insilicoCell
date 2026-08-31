@@ -2,10 +2,7 @@
 
 InsilicoCell is a virtual platform for cellular functional profile prediction and multi-objective drug screening. Watch the introduction below:
 
-
-https://github.com/user-attachments/assets/0b18bfd1-b983-4bdd-8c18-46fcdc0c1aa7
-
-
+https://github.com/user-attachments/assets/c1493277-dbe6-40ac-8814-2a532342b3fc
 
 You can also read our preprint here: [A pretrained unified model enables cellular functional profile prediction and multi-objective virtual drug screening](https://doi.org/10.64898/2026.08.25.746866).
 
