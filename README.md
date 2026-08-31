@@ -1,6 +1,9 @@
 # InsilicoCell
 
-InsilicoCell is a virtual platform for cellular functional profile prediction and multi-objective drug screening. Read our preprint [here](https://doi.org/10.64898/2026.08.25.746866).
+InsilicoCell is a virtual platform for cellular functional profile prediction and multi-objective drug screening. Watch the introduction below:
+[![Watch the introduction on InsilicoCell](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/figures/introduction.png)](https://app.heygen.com/videos/insilicocell-unified-cellular-prediction-8c1d89a48fa043bda5aa3979fd16421e)
+
+You can also read our preprint here: [A pretrained unified model enables cellular functional profile prediction and multi-objective virtual drug screening](https://doi.org/10.64898/2026.08.25.746866).
 
 InsilicoCell can be used in two ways:
 
@@ -64,9 +67,7 @@ Example answers from the Claude interface:
 
 <Br> 
 
-Another example involving a longer conversation with InsilicoCell on the topic of PD-L1 inhibitor screening can be viewed [here](https://claude.ai/share/aaea143e-17dc-4e3d-9f10-1be214f6b782). 
-
-You can chat with InsilicoCell for multiple rounds in the same conversation. Depending on your question, the interface may need to discuss with you for more details for a better answer. For example, if you ask questions about perturbing a cellular context that is not in the built-in cell library of InsilicoCell, the assistant will first ask you to either upload the originally untreated cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)), or it will search on web for the originally untreated cell transcriptome data. After that, it will predict the perturbed state of that cellular context. A conversation with InsilicoCell about uploading files of your own interested cell type which is not originally in the built-in cell library can be viewed [here](https://claude.ai/share/63905f82-4bf1-406a-9a1d-92bc7dc26462).
+You can chat with InsilicoCell for multiple rounds in the same conversation. Depending on your question, the interface may need to discuss with you for more details for a better answer. For example, if you ask questions about perturbing a cellular context that is not in the built-in cell library of InsilicoCell, the assistant will first ask you to either upload the originally untreated cell transcriptome data ([File 2](https://github.com/Bin-Chen-Lab/insilicoCell#file-2-cell-transcriptome-required-for-5-of-7-tasks)), or it will search on web for the originally untreated cell transcriptome data. After that, it will predict the perturbed state of that cellular context. An example conversation with InsilicoCell about uploading files of your own interested cell type which is not originally in the built-in cell library can be viewed [here](https://claude.ai/share/63905f82-4bf1-406a-9a1d-92bc7dc26462). We also showed an example in the introduction video with user file uploading, you can reproduce the conversation in the video using the demo file of untreated cell transcriptome data [here](https://github.com/Bin-Chen-Lab/insilicoCell/blob/main/InsilicoCell/demo_data/M229_transposed.csv).
 
 For drug screening questions, the assistant will offer two choices:
 
@@ -74,6 +75,8 @@ For drug screening questions, the assistant will offer two choices:
 2. Upload your own CSV containing unique `compound_id` and `SMILES` columns (`compound_name` is optional).
 
 Large screens run in the background. The actual job running time depends on the real-time workload on the remote server. We recommend that you run a small-scale screening job to test running speed before trying a large-scale screening job with millions of compounds. You may close the conversation and later ask for job status using the returned job ID. You should actively ask the assistant to check on the job status, when a job completes, the assistant will provide you with a result-file download link. **You have 8 hours for downloading after job completion, before the result file expires.**
+
+An example involving a longer conversation with InsilicoCell on the topic of PD-L1 inhibitor screening can be viewed [here](https://claude.ai/share/aaea143e-17dc-4e3d-9f10-1be214f6b782). 
 
 ## 1.3. Hosted-service limits and data retention
 
