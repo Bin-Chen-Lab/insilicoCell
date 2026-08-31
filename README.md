@@ -73,7 +73,7 @@ For drug screening questions, the assistant will offer two choices:
 1. Use InsilicoCell's built-in compound library, which contains ~4.7 million Enamine compounds. 
 2. Upload your own CSV containing unique `compound_id` and `SMILES` columns (`compound_name` is optional).
 
-Large screens run in the background. You may close the conversation and later ask for job status using the returned job ID. You should actively ask the assistant to check on the job status, when a job completes, the assistant will provide you with a result-file download link. **You have 8 hours for downloading after job completion, before the result file expires.**
+Large screens run in the background. The actual job running time depends on the real-time workload on the remote server. We recommend that you run a small-scale screening job to test running speed before trying a large-scale screening job with millions of compounds. You may close the conversation and later ask for job status using the returned job ID. You should actively ask the assistant to check on the job status, when a job completes, the assistant will provide you with a result-file download link. **You have 8 hours for downloading after job completion, before the result file expires.**
 
 ## 1.3. Hosted-service limits and data retention
 
