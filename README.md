@@ -259,7 +259,7 @@ For downloading, prediction and evaluation procedures on the benchmarking datase
 
 <!-- USAGE_METRICS_START -->
 Total unique InsilicoCell installations: 32  
-Total completed predictions: 143  
+Total completed predictions: 145  
 Tracking began: 2026-08-19
 <!-- USAGE_METRICS_END -->
 
