@@ -258,8 +258,8 @@ For downloading, prediction and evaluation procedures on the benchmarking datase
 # Cumulative usage statistics
 
 <!-- USAGE_METRICS_START -->
-Total unique InsilicoCell installations: 68  
-Total completed predictions: 881  
+Total unique InsilicoCell installations: 69  
+Total completed predictions: 889  
 Tracking began: 2026-08-19
 <!-- USAGE_METRICS_END -->
 
